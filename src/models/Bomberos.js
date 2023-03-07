@@ -2,6 +2,16 @@ import { Schema, model } from "mongoose";
 
 const bomberosSchema = new Schema(
   {
+    nombre: {
+      type: String,
+      require: true,
+      trim: true,
+    },
+    apellido: {
+      type: String,
+      require: true,
+      trim: true,
+    },
     dni: {
       type: Number,
       require: true,
@@ -11,17 +21,7 @@ const bomberosSchema = new Schema(
       type: Number,
       require: true,
     },
-    nombre: {
-      type: String,
-      require: true,
-      trim: true,
-    },
-    Apellido: {
-      type: String,
-      require: true,
-      trim: true,
-    },
-    Rango: {
+    rango: {
       type: String,
       require: true,
       trim: true,
