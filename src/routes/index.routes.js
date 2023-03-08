@@ -2,6 +2,7 @@ import { Router } from "express";
 import Bomberos from "../models/Bomberos";
 import Unidades from "../models/Unidades";
 import Novedades from "../models/Novedades";
+import Movimientos from "../models/Movimientos";
 
 const router = Router();
 
@@ -71,6 +72,20 @@ router.get("/movimientos",  (req, res) => {
 
   res.render("movimientoUnidades");
 });
+
+router.get("/movimientoAdd", async (req, res) => {
+  const bombero = await Bomberos.find().lean();
+  const unidad = await Unidades.find().lean();
+
+  res.render("movimientosAdd",{unidad: unidad , bombero:bombero});
+});
+
+router.post("/movimiento/agregar", async (req, res) => {
+  const movimiento = Movimientos(req.body);
+  await movimiento.save();
+  res.redirect("/movimientos");
+});
+
 
 
 export default router;

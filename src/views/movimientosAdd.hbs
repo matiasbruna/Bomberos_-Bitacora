@@ -1,0 +1,59 @@
+<h1>Agregar Movimiento de Unidades</h1>
+</br>
+<form action="movimiento/agregar"
+        method="post">
+    <div>
+        <button class="btn">Agregar</button>
+        <a href="/movimiento/agregar"  class="btn btn-primary">Agregar Movimiento Nuevo</a>
+        <a href="/movimientos" class="btn btn-primary">Cancelar</a>
+    </div>
+    </br>
+    <table class="table table-bordered table-hover table-dark">
+    <thead>
+        <tr>
+        <th>Num</th>
+        <th>Cuartelero</th>
+        <th>Autorizo</th>
+        <th>Unidad</th>
+        <th>Chofer</th>
+        <th>Propocito</th>
+        <th>Fecha y Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>1</td>
+                <td>
+                    <select name="cuartelero" id="cuartelero">
+                        {{#each bombero}}
+                            <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select name="autorizo" id="autorizo">
+                        {{#each bombero}}
+                            <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select name="unidad" id="unidad">
+                        {{#each unidad}}
+                            <option value="{{this.numero}}">{{this.numero}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td>
+                    <select name="chofer" id="chofer">
+                        {{#each bombero}}
+                            <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                        {{/each}}
+                    </select>
+                </td>
+                <td><input type="text" name="propocito" id="propocito" /></td>
+                <td><input type="datetime-local" name="fechaInicio"></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
