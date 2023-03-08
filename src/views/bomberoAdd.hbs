@@ -1,0 +1,37 @@
+<div class="container text-black">
+  <h1>Formulario de Entrada de Datos</h1>
+  <form
+    action="bomberos/agregar"
+    method="post"
+    class="w-25 mx-auto border border-dark rounded"
+  >
+    <label for="nombre">Ingrese el nombre:</label>
+    <input
+      type="text"
+      name="nombre"
+      placeholder="Nombre"
+      id="nombre"
+      class="mx-auto"
+    />
+
+    <br />
+    <label for="apellido">Ingrese el apellido:</label>
+    <input type="text" name="apellido" placeholder="Apellido" id="apellido" />
+
+    <br />
+    <label for="dni">DNI:</label>
+    <input type="text" name="dni" placeholder="DNI" id="dni" />
+
+    <br />
+    <label for="nOrden">Numero de orden:</label>
+    <input type="text" name="nOrden" placeholder="N de Orden" id="nOrden" />
+
+    <br />
+    <label for="rango">Rango</label>
+    <input type="text" name="rango" placeholder="Rango" id="rango" />
+
+    <br />
+    <button class="btn btn-primary">agregar</button>
+    <a href="/Bomberos" class="btn btn-primary">Volver</a>
+  </form>
+</div>

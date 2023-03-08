@@ -1,0 +1,22 @@
+<div class="container text-black">
+  <h1>Formulario de Entrada de Datos</h1>
+  <form
+    action="novedades/agregar"
+    method="post"
+    class="w-25 mx-auto border border-dark rounded"
+  >
+    <br />
+    <label for="bombero">Bombero</label>
+    <select name="bombero" id="bombero">
+        {{#each bombero}}
+            <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+        {{/each}}
+    </select>
+
+    <label for="descripcion">Descripcion:</label>
+    <textarea name="descripcion" placeholder="descripcion" id="descripcion"></textarea>
+
+    <button class="btn btn-primary">agregar</button>
+    <a href="/novedades" class="btn btn-primary">Volver</a>
+  </form>
+</div>

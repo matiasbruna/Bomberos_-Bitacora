@@ -1,0 +1,30 @@
+<h1>Listado de Unidades</h1>
+
+</br>
+
+<div>
+    <a href="/unidadesAdd" class="btn btn-primary">Agregar nueva Unidad</a>
+</div>
+</br>
+<table class="table table-bordered table-hover table-dark">
+  <thead>
+    <tr>
+      <th>Num</th>
+      <th>Marca</th>
+      <th>Propocito</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each unidad}}
+      <tr>
+        <td>{{this.numero}}</td>
+        <td>{{this.marca}}</td>
+        <td>{{this.propocito}}</td>
+        <td>
+          <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
+          <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
+        </td>       
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
