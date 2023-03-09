@@ -4,6 +4,7 @@
     <a href="/movimientoAdd" class="btn btn-primary">Agregar Movimiento Nuevo</a>
 </div>
 </br>
+<h2>Unidades Pendientes</h2>
 <table class="table table-bordered table-hover table-dark">
   <thead>
     <tr>
@@ -14,6 +15,7 @@
       <th>Chofer</th>
       <th>Fecha</th>
       <th>Propocito</th>
+      <th>KM</th>
       <th>Fecha</th>
       <th>Finalizo</th>
       <th>Finalizar</th>
@@ -29,7 +31,8 @@
         <td>{{this.chofer}}</td>
         <td>{{this.fechaInicio}}</td>
         <td>{{this.propocito}}</td>
-        <td>{{this.fechaFinal}}</td>
+        <td><input type="text" name="km" placeholder="Agregar KM"></td>
+        <td><input type="datetime-local" name="fechaFinal"></td>
         <td>{{this.finalizo}}</td>
         <td>
           <a href="/edit/{{_id}}" class="btn btn-info">Finalizar</a>
@@ -39,3 +42,6 @@
 
   </tbody>
 </table>
+</br>
+<h2>Uniades Finalizadas</h2>
+
