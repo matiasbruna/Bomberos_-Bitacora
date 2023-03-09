@@ -20,11 +20,22 @@
     </tr>
   </thead>
   <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-    </tbody>
+    {{#each movimiento}}
+      <tr>
+        <td>{{@index}}</td>
+        <td>{{this.cuartelero}}</td>
+        <td>{{this.autorizo}}</td>
+        <td>{{this.unidad}}</td>
+        <td>{{this.chofer}}</td>
+        <td>{{this.fechaInicio}}</td>
+        <td>{{this.propocito}}</td>
+        <td>{{this.fechaFinal}}</td>
+        <td>{{this.finalizo}}</td>
+        <td>
+          <a href="/edit/{{_id}}" class="btn btn-info">Finalizar</a>
+        </td>       
+      </tr>
+    {{/each}}
+
+  </tbody>
 </table>

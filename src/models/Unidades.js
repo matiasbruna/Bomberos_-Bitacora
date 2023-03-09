@@ -16,6 +16,11 @@ const unidadesSchema = new Schema(
       type: String,
       require: true,
       trim: true,
+    },
+    km: {
+      type: Number,
+      require: true,
+      trim: true,
     }
   },
   {

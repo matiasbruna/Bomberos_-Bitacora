@@ -15,7 +15,6 @@ const movimientosSchema = new Schema(
     unidad: {
       type: Number,
       require: true,
-      unique: true,
     },
     chofer: {
         type: String,
@@ -29,6 +28,7 @@ const movimientosSchema = new Schema(
     },
     km: {
         type: Number,
+        require: false
       },
     fechaInicio: {
       type: Date,
@@ -48,4 +48,4 @@ const movimientosSchema = new Schema(
   }
 );
 
-export default model("Movimeintos", movimientosSchema);
+export default model("Movimientos", movimientosSchema);
