@@ -1,34 +1,39 @@
-<h1>Listado de Bomberos</h1>
-</br>
-<div>
-    <a href="/bomberoAdd" class="btn btn-primary">Agregar Bombero Nuevo</a>
+<div class="container-fluid">
+    <h1>Listado de Bomberos</h1>
+    </br>
+    <div>
+      <a href="/bomberoAdd" class="btn btn-primary">Agregar Bombero Nuevo</a>
+     </div>
+    </br>
+    <table class="table table-bordered table-hover table-dark">
+      <thead>
+        <tr>
+          <th>Num</th>
+          <th>Apellido</th>
+          <th>Nombre</th>
+          <th>Rango</th>
+          <th>Dni</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each TodosBomberos}}
+          <tr>
+            <td>{{this.nOrden}}</td>
+            <td>{{this.apellido}}</td>
+            <td>{{this.nombre}}</td>
+            <td>{{this.rango}}</td>
+            <td>{{this.dni}}</td>
+            
+            <td>
+              <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
+              <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
+            </td>       
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
 </div>
-</br>
-<table class="table table-bordered table-hover table-dark">
-  <thead>
-    <tr>
-      <th>Num</th>
-      <th>Apellido</th>
-      <th>Nombre</th>
-      <th>Rango</th>
-      <th>Dni</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each TodosBomberos}}
-      <tr>
-        <td>{{this.nOrden}}</td>
-        <td>{{this.apellido}}</td>
-        <td>{{this.nombre}}</td>
-        <td>{{this.rango}}</td>
-        <td>{{this.dni}}</td>
-        
-        <td>
-          <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
-          <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
-        </td>       
-      </tr>
-    {{/each}}
-  </tbody>
-</table>
+
+
 

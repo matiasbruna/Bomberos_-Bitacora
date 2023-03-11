@@ -22,6 +22,10 @@ app.set("views", path.join(__dirname, "views"));
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 
+//configuracion de las rutas
 app.use(indexRoutes);
 
+//configuracion de los archivos estaticos.
+
+app.use(express.static(path.join(__dirname, "public")));
 export default app;
