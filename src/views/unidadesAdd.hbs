@@ -1,27 +1,31 @@
-<div class="container text-black">
-  <h1>Formulario de Entrada de Datos</h1>
-  <form
-    action="unidades/agregar"
-    method="post"
-    class="w-25 mx-auto border border-dark rounded"
-  >
+<div class="container mt-4 bg-dark text-white" >
+  <h1>Ingrese Nueva Unidad</h1>
+  <form action="unidades/agregar" method="post">
     <br />
     <label for="numero">Numero:</label>
+    <br />
     <input type="text" name="numero" placeholder="Numero" id="numero" />
-
     <br />
     <label for="marca">Marca</label>
+    <br />
     <input type="text" name="marca" placeholder="Marca" id="marca" />
-
     <br />
     <label for="propocito">Numero de orden:</label>
-    <input type="text" name="propocito" placeholder="propocito" id="propocito" />
-
+    <br />
+    <input
+      type="text"
+      name="propocito"
+      placeholder="propocito"
+      id="propocito"
+    />
     <br />
     <label for="km">KM:</label>
+    <br />
     <input type="text" name="km" placeholder="km" id="km" />
-
-    <button class="btn btn-primary">agregar</button>
-    <a href="/unidades" class="btn btn-primary">Volver</a>
+    <br />
+    <div class="container mt-2 mb-2">
+      <button class="btn btn-primary">agregar</button>
+      <a href="/unidades" class="btn btn-primary">Volver</a>
+    </div>
   </form>
 </div>

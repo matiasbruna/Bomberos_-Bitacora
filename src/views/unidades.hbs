@@ -1,32 +1,34 @@
-<h1>Listado de Unidades</h1>
+<div class="container-fluid  p-4  mt-4">
+  <h1>Listado de Unidades</h1>
+  </br>
+  <div>
+      <a href="/unidadesAdd" class="btn btn-primary">Agregar nueva Unidad</a>
+  </div>
+  </br>
 
-</br>
-
-<div>
-    <a href="/unidadesAdd" class="btn btn-primary">Agregar nueva Unidad</a>
-</div>
-</br>
-<table class="table table-bordered table-hover table-dark">
-  <thead>
-    <tr>
-      <th>Num</th>
-      <th>Marca</th>
-      <th>Propocito</th>
-      <th>km</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each unidad}}
+  <table class="table table-bordered table-hover table-dark">
+    <thead>
       <tr>
-        <td>{{this.numero}}</td>
-        <td>{{this.marca}}</td>
-        <td>{{this.propocito}}</td>
-        <td>{{this.km}}</td>
-        <td>
-          <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
-          <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
-        </td>       
+        <th>Num</th>
+        <th>Marca</th>
+        <th>Propocito</th>
+        <th>km</th>
+        <th>Accion</th>
       </tr>
-    {{/each}}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {{#each unidad}}
+        <tr>
+          <td>{{this.numero}}</td>
+          <td>{{this.marca}}</td>
+          <td>{{this.propocito}}</td>
+          <td>{{this.km}}</td>
+          <td>
+            <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
+            <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
+          </td>       
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
