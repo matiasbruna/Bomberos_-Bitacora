@@ -15,18 +15,18 @@ router.get("/", (req, res) => {
 
 router.get("/Bomberos", async (req, res) => {
   const TodosBomberos = await Bomberos.find().lean();
-  res.render("Bomberos", { TodosBomberos: TodosBomberos });
+  res.render("bomberos/bomberos", { TodosBomberos: TodosBomberos });
 });
 
 router.post("/bomberos/agregar", async (req, res) => {
   const bombero = Bomberos(req.body);
   await bombero.save();
-  res.redirect("/bomberos");
+  res.redirect("bomberos/bomberos");
 });
 
 router.get("/bomberoAdd", (req, res) => {
 
-  res.render("bomberoAdd",{Grados: Grados});
+  res.render("bomberos/bomberoAdd",{Grados: Grados});
 });
 
 //Rutas Unidades
