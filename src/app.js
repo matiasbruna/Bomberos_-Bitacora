@@ -2,6 +2,7 @@ import express from "express";
 import { engine } from "express-handlebars";
 import indexRoutes from "./routes/index.routes";
 import bomberoRoutes from "./routes/bomberos.routes"
+import unidadesRoutes from "./routes/unidades.routes"
 import path from "path";
 import morgan from "morgan";
 
@@ -26,6 +27,7 @@ app.use(express.urlencoded({ extended: false }));
 //configuracion de las rutas
 app.use(indexRoutes);
 app.use(bomberoRoutes);
+app.use(unidadesRoutes);
 
 //configuracion de los archivos estaticos.
 
