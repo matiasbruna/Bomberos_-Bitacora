@@ -28,7 +28,6 @@ const bomberosSchema = new Schema(
     },
     activo:{
       type: Boolean,
-      require: true,
     }
   },
   {

@@ -3,6 +3,7 @@ import Bomberos from "../models/Bomberos";
 import Unidades from "../models/Unidades";
 import Novedades from "../models/Novedades";
 import Movimientos from "../models/Movimientos";
+import Grados from "../models/Grados";
 
 const router = Router();
 
@@ -24,13 +25,15 @@ router.post("/bomberos/agregar", async (req, res) => {
 });
 
 router.get("/bomberoAdd", (req, res) => {
-  res.render("bomberoAdd");
+
+  res.render("bomberoAdd",{Grados: Grados});
 });
 
 //Rutas Unidades
 
 router.get("/unidades", async (req, res) => {
   const unidad = await Unidades.find().lean();
+  console.log(unidad);
 
   res.render("unidades", { unidad: unidad });
 });

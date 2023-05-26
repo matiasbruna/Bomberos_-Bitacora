@@ -21,7 +21,12 @@
       <br />
       <label for="rango">Rango</label>
       <br />
-      <input type="text" name="rango" placeholder="Rango" id="rango" />
+      {{!-- <input type="text" name="rango" placeholder="Rango" id="rango" /> --}}
+      <select name="rango" id="rango">
+        {{#each Grados}}
+            <option value="{{this.nombre}}">{{this.nombre}}</option>
+        {{/each}}
+      </select>
       <br />
        <div class="container mt-2 mb-2">
         <button class="btn btn-primary">agregar</button>
