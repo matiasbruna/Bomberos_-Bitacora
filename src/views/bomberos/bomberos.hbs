@@ -13,6 +13,8 @@
           <th>Nombre</th>
           <th>Rango</th>
           <th>Dni</th>
+          <th>Estado</th>
+          <th>Despachador</th>
         </tr>
       </thead>
       <tbody>
@@ -23,9 +25,11 @@
             <td>{{this.nombre}}</td>
             <td>{{this.rango}}</td>
             <td>{{this.dni}}</td>
+            <td>{{this.estado}}</td>
+            <td>{{this.despachador}}</td>
             
             <td>
-              <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
+              <a href="/editarBomberos/{{_id}}" class="btn btn-info">Modificar </a>
               <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
             </td>       
           </tr>
