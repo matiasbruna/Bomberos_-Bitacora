@@ -3,7 +3,8 @@ import { engine } from "express-handlebars";
 import indexRoutes from "./routes/index.routes";
 import bomberoRoutes from "./routes/bomberos.routes";
 import unidadesRoutes from "./routes/unidades.routes";
-import novedaesRoutes from "./routes/novedades.routes"
+import novedaesRoutes from "./routes/novedades.routes";
+import movimientoUnidades from "./routes/movimientosUnidades.routes";
 
 import path from "path";
 import morgan from "morgan";
@@ -31,6 +32,7 @@ app.use(indexRoutes);
 app.use(bomberoRoutes);
 app.use(unidadesRoutes);
 app.use(novedaesRoutes);
+app.use(movimientoUnidades);
 
 //configuracion de los archivos estaticos.
 
