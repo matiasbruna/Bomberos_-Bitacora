@@ -1,9 +1,10 @@
 body {
-    background-image: url('/img/fondo.jpg');
+    background-image: url('/img/fondo2.jpeg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
+    background-position: center;
     background-attachment: fixed;
-    opacity: 0,5;
+    background-color: rgb(255, 255, 255, 0.2);
 }
 h1 {
     text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, 1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
