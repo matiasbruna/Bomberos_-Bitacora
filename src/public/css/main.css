@@ -1,10 +1,12 @@
 body {
-    background-image: url('/img/logoBomberos.png');
+    
+    background-image: url('/img/isologo30.png');
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    /* background: rgb(255,2,2);
+    
+    /*  background-color: rgba(255,255,255,0.2);
     background: linear-gradient(90deg, rgba(255,2,2,1) 0%, rgba(253,77,29,1) 50%, rgba(245,245,245,1) 100%); */
 }
 h1 {
