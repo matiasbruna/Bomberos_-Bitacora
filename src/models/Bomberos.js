@@ -26,8 +26,14 @@ const bomberosSchema = new Schema(
       require: true,
       trim: true,
     },
-    activo:{
+    estado:{
+      type: String , 
+      default: 'Activo',
+      require:true,
+    },
+    despachador:{
       type: Boolean,
+      default: false, 
     }
   },
   {

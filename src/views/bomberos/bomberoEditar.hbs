@@ -1,0 +1,90 @@
+{{!-- {{#each errors}}
+  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{text}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{{/each}} --}}
+
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Editar Bombero</h3>
+    </div>
+    <div class="card-body">
+      <form action="/bomberos/editBombero/{{bombero._id}}" method="POST">
+        {{!-- <input type="hidden" name="_method" value="PUT" /> --}}
+          <div class="mb-3">
+            <label for="title">Nombre:</label>
+            <input
+              type="text"
+              name="nombre"
+              class="form-control"
+              value="{{bombero.nombre}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="title">Apellido:</label>
+            <input
+              type="text"
+              name="apellido"
+              class="form-control"
+              value="{{bombero.apellido}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="title">Dni:</label>
+            <input
+              type="text"
+              name="dni"
+              class="form-control"
+              value="{{bombero.dni}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="title">Numero de Orden:</label>
+            <input
+              type="text"
+              name="nOrden"
+              class="form-control"
+              value="{{bombero.nOrden}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="title">Rango:</label>
+            <input
+              type="text"
+              name="rango"
+              class="form-control"
+              value="{{bombero.rango}}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="title">Estado:</label>
+            <select name="estado">
+              {{#each Estados}}
+              <option value="{{this.estado}}">{{this.estado}}</option>
+              {{/each}}
+            </select>   
+          </div>
+          <div class="mb-3">
+            <label>
+                <input 
+                type="checkbox" 
+                name="despachador"
+                value="true"
+                 {{#if bombero.despachador}}
+                  checked
+                 {{/if}}
+                >
+                 Despachador.
+            </label>  
+          </div>  
+        <button class="btn btn-primary w-100" type="submit">
+          Guardar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
