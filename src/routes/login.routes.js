@@ -1,5 +1,7 @@
+import User from "../models/auth";
 import { Router } from "express";
 import Bomberos from "../models/Bomberos";
+import UserAdd from "../models/auth";
 const router = Router();
 
 router.get("/login", async (req, res) => {
@@ -19,6 +21,7 @@ router.post("/login", async (req, res) => {
 
     if (bomberoEncontrado) {
       if (dni == usuario.password) {
+        User.push(usuario.despachador);
         console.log("ususario encontrado");
       } else {
         console.log("Paswword Incorrecto");
@@ -32,6 +35,10 @@ router.post("/login", async (req, res) => {
     console.error(error);
     res.status(500).send("Error de servidor");
   }
+});
+router.get("/logOut",(req,res)=>{
+    User.splice(0, User.length);
+    res.redirect("/");
 });
 
 export default router;
