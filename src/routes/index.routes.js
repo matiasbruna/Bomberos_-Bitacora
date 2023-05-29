@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 });
 
 router.get('/acercaDe',(req,res)=>{
-  res.render("acercaDe");
+  res.render("acercaDe",{User});
 });
 
 export default router;

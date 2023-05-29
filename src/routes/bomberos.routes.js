@@ -4,11 +4,12 @@ import { Router } from "express";
 import Bomberos from "../models/Bomberos";
 import Grados from "../models/Grados";
 import Estados from "../models/Estados"
+import User from "../models/auth";
 const router = Router();
 
 router.get("/Bomberos", async (req, res) => {
   const TodosBomberos = await Bomberos.find().lean();
-  res.render("bomberos/bomberos", { TodosBomberos: TodosBomberos });
+  res.render("bomberos/bomberos", { TodosBomberos: TodosBomberos, User });
 });
 
 router.post("/bomberos/agregar", async (req, res) => {

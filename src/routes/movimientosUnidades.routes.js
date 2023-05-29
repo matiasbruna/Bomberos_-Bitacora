@@ -3,12 +3,13 @@ import { Router } from "express";
 import Movimientos from "../models/Movimientos";
 import Bomberos from "../models/Bomberos";
 import Unidades from "../models/Unidades";
+import User from "../models/auth";
 
 const router = Router();
 
 router.get("/movimientos", async (req, res) => {
   const movimiento = await Movimientos.find().lean();
-  res.render("movimientosUnidades/movimientoUnidades", { movimiento: movimiento });
+  res.render("movimientosUnidades/movimientoUnidades", { movimiento: movimiento, User});
 });
 
 router.get("/movimientoAdd", async (req, res) => {

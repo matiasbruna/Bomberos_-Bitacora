@@ -1,13 +1,14 @@
 //Rutas Unidades
 import { Router } from "express";
 import Unidades from "../models/Unidades";
+import User from "../models/auth";
 const router = Router();
 
 router.get("/unidades", async (req, res) => {
   const unidad = await Unidades.find().lean();
   console.log(unidad);
 
-  res.render("unidades/unidades", { unidad: unidad });
+  res.render("unidades/unidades", { unidad: unidad , User});
 });
 
 router.get("/unidadesAdd", (req, res) => {

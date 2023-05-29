@@ -1,7 +1,7 @@
 import User from "../models/auth";
 import { Router } from "express";
 import Bomberos from "../models/Bomberos";
-import UserAdd from "../models/auth";
+
 const router = Router();
 
 router.get("/login", async (req, res) => {

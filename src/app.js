@@ -7,6 +7,7 @@ import novedaesRoutes from "./routes/novedades.routes";
 import movimientoUnidades from "./routes/movimientosUnidades.routes";
 import loginRoutes from "./routes/login.routes";
 
+
 import path from "path";
 import morgan from "morgan";
 
@@ -28,10 +29,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 
-app.use((req, res, next) => {
-  res.locals.user = req.user || null;
-  next();
-});
+
 let globalUsername = null;
 //configuracion de las rutas
 app.use(indexRoutes);

@@ -2,12 +2,13 @@
 import { Router } from "express";
 import Bomberos from "../models/Bomberos";
 import Novedades from "../models/Novedades";
+import User from "../models/auth";
 const router = Router();
 router.get("/novedades", async (req, res) => {
   const novedad = await Novedades.find().lean().sort({ _id: -1 });
   novedad.sort();
 
-  res.render("novedades/novedades", { novedad: novedad });
+  res.render("novedades/novedades", { novedad: novedad ,User});
 });
 
 router.get("/novedadesAdd", async (req, res) => {
