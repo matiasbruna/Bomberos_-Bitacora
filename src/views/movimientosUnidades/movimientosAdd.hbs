@@ -12,7 +12,6 @@
         <thead>
             <tr>
             <th>Num</th>
-            <th>Cuartelero</th>
             <th>Autorizo</th>
             <th>Unidad</th>
             <th>Chofer</th>
@@ -23,13 +22,6 @@
         <tbody>
                 <tr>
                     <td>2</td>
-                    <td>
-                        <select name="cuartelero" id="cuartelero">
-                            {{#each bombero}}
-                                <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
                     <td>
                         <select name="autorizo" id="autorizo">
                             {{#each bombero}}
