@@ -11,9 +11,8 @@
         <table class="table table-bordered table-hover table-dark">
         <thead>
             <tr>
-            <th>Num</th>
-            <th>Autorizo</th>
             <th>Unidad</th>
+            <th>Autorizo</th>
             <th>Chofer</th>
             <th>Propocito</th>
             <th>Fecha y Hora</th>
@@ -21,18 +20,17 @@
         </thead>
         <tbody>
                 <tr>
-                    <td>2</td>
-                    <td>
-                        <select name="autorizo" id="autorizo">
-                            {{#each bombero}}
-                                <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
                     <td>
                         <select name="unidad" id="unidad">
                             {{#each unidad}}
                                 <option value="{{this.numero}}">{{this.numero}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                    <td>
+                        <select name="autorizo" id="autorizo">
+                            {{#each bombero}}
+                                <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
                             {{/each}}
                         </select>
                     </td>

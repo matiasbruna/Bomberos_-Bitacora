@@ -10,10 +10,6 @@ const router = Router();
 
 router.get("/movimientos", async (req, res) => {
   const movimiento = await Movimientos.find().lean();
-
-  movimiento.fechaInicio = moment(movimiento.fechaInicio, "DD/MM/YY HH:mm:ss").toDate();
-
-   console.log(movimiento)
   res.render("movimientosUnidades/movimientoUnidades", { movimiento: movimiento, User});
 });
 
@@ -36,6 +32,7 @@ router.post("/movimiento/agregar", async (req, res) => {
     }
   }
   movimiento.finalizo = false;
+  movimiento.fechaInicio = moment(movimiento.fechaInicio, "DD/MM/YY HH:mm:ss").toDate();
   console.log(movimiento);
 
   await movimiento.save();
