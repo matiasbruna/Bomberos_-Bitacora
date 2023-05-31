@@ -9,10 +9,10 @@
       <table class="table table-bordered table-hover table-dark">
         <thead>
           <tr>
-            <th>Num</th>
-            <th>Cuartelero</th>
-            <th>Autorizo</th>
+            {{!-- <th>Num</th> --}}
             <th>Unidad</th>
+            <th>Cuartelero</th>
+            <th>Autorizo</th>           
             <th>Chofer</th>
             <th>Fecha</th>
             <th>Propocito</th>
@@ -25,10 +25,12 @@
         <tbody>
           {{#each movimiento}}
             <tr>
-              <td>{{@index}}</td>
-              <td>{{this.cuartelero}}</td>
-              <td>{{this.autorizo}}</td>
+              {{!-- <td>{{@index}}</td> --}}
               <td>{{this.unidad}}</td>
+              <td>{{this.cuartelero}}</td>
+
+              <td>{{this.autorizo}}</td>
+              
               <td>{{this.chofer}}</td>
               <td>{{this.fechaInicio}}</td>
               <td>{{this.propocito}}</td>
@@ -44,7 +46,37 @@
         </tbody>
       </table>
       </br>
-      <h2>Movimientos Finalizados</h2>
+      <h2>Movimientos Finalizados:</h2>
+      <table class="table table-bordered table-hover table-dark">
+        <thead>
+          <tr>
+            {{!-- <th>Num</th> --}}
+            <th>Unidad</th>
+            <th>Cuartelero</th>
+            <th>Autorizo</th>           
+            <th>Chofer</th>
+            <th>Fecha</th>
+            <th>Propocito</th>
+            <th>Finalizo</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each movimientoTerminado}}
+            <tr>
+              {{!-- <td>{{@index}}</td> --}}
+              <td>{{this.unidad}}</td>
+              <td>{{this.cuartelero}}</td>
+              <td>{{this.autorizo}}</td> 
+              <td>{{this.chofer}}</td>
+              <td>{{this.fechaInicio}}</td>
+              <td>{{this.propocito}}</td>
+              <td>{{this.finalizo}}</td>
+            </tr>
+          {{/each}}
+
+        </tbody>
+      </table>
+      
 
 </div>
 
