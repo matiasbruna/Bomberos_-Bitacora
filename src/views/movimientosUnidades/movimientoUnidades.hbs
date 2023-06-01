@@ -11,15 +11,14 @@
           <tr>
             {{!-- <th>Num</th> --}}
             <th>Unidad</th>
+            <th>Finalizar</th>
+            <th>KM</th>
+            <th>Fecha Regreso</th>
             <th>Cuartelero</th>
             <th>Autorizo</th>           
             <th>Chofer</th>
             <th>Fecha</th>
-            <th>Propocito</th>
-            <th>KM</th>
-            <th>Fecha</th>
-            <th>Finalizo</th>
-            <th>Finalizar</th>
+            <th>Propocito</th>           
           </tr>
         </thead>
         <tbody>
@@ -28,18 +27,16 @@
                 <form action="/movimiento/finalizar/{{_id}}" method="POST">
                   {{!-- <td>{{@index}}</td> --}}
                   <td>{{this.unidad}}</td>
+                  <td>
+                    <button type="submit" class="btn btn-info">Finalizar</button>
+                  </td>
+                  <td><input type="text" name="km" placeholder="Agregar KM"></td>
+                  <td><input type="datetime-local" name="fechaFinal"></td>
                   <td>{{this.cuartelero}}</td>
                   <td>{{this.autorizo}}</td>
                   <td>{{this.chofer}}</td>
                   <td>{{this.fechaInicio}}</td>
-                  <td>{{this.propocito}}</td>
-                  <td><input type="text" name="km" placeholder="Agregar KM"></td>
-                  <td><input type="datetime-local" name="fechaFinal"></td>
-                  <td>{{this.finalizo}}</td>
-                  <td>
-                    <button type="submit" class="btn btn-info">Finalizar</button>
-                  </td>
-                  <input type="hidden" name="_id" value="{{this._id}}">
+                  <td>{{this.propocito}}</td>                                
                 </form>
               </tr>
             {{/each}}
@@ -53,6 +50,7 @@
           <tr>
             {{!-- <th>Num</th> --}}
             <th>Unidad</th>
+           
             <th>Cuartelero</th>
             <th>Autorizo</th>           
             <th>Chofer</th>

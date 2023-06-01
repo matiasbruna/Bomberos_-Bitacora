@@ -8,9 +8,11 @@ import moment from "moment";
 
 const router = Router();
 
+
 router.get("/movimientos", async (req, res) => {
   const movimiento = await Movimientos.find({finalizo: false}).lean();
   const movimientoTerminado = await Movimientos.find({finalizo: true}).lean();
+
   res.render("movimientosUnidades/movimientoUnidades", { movimiento: movimiento, User, movimientoTerminado});
 });
 
@@ -34,23 +36,40 @@ router.post("/movimiento/agregar", async (req, res) => {
   }
   movimiento.finalizo = false;
   // movimiento.fechaInicio = moment(movimiento.fechaInicio, "DD/MM/YY HH:mm:ss").toDate();
-  console.log(movimiento);
+
 
   await movimiento.save();
   res.redirect("/movimientos");
 });
 
 router.post("/movimiento/finalizar/:id", async (req, res) => {
+  
+  let errors =[];
+  
   const movimientoID = await Movimientos.findById(req.params.id);
   const {fechaFinal, km} = await req.body;
+
+ 
   let movimientoTerminado = movimientoID ;
   movimientoTerminado.km = km;
   movimientoTerminado.fechaFinal = fechaFinal;
   movimientoTerminado.finalizo = 'true' ;
-  console.log(movimientoTerminado);
+  console.log(km);
+  
+  
+
+  GuardarKm(movimientoTerminado.unidad, km)
 
   await Movimientos.findByIdAndUpdate(req.params.id, movimientoTerminado)
+ 
   res.redirect("/movimientos")
 });
+
+async function GuardarKm (numeroUnidad, KM){
+  let unidad   = await Unidades.findOne({numero: numeroUnidad}).lean();
+  unidad.km = KM;
+  await Unidades.findByIdAndUpdate(unidad._id, unidad);
+
+}
 
 export default router;
