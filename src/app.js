@@ -44,4 +44,12 @@ app.use(novedadesPersonal);
 //configuracion de los archivos estaticos.
 
 app.use(express.static(path.join(__dirname, "public")));
+
+// app.use((req, res, next) => {
+//   return res.status(404).render("404");
+// });
+
+
 export default app;
+
+
