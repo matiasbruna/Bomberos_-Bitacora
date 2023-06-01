@@ -16,3 +16,9 @@ export const CargaNovedadPersonal = async(req,res)=>{
 
     res.render("novedadesPersonal/novedadPersonalAdd",{bomberos, Situacion,User});
 };
+
+export const guardadNovedad = async (req,res)=>{
+    console.log(req.body);
+
+    res.redirect("/novedadePersonal");
+};
