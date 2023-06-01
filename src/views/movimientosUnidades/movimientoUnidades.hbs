@@ -1,81 +1,76 @@
 <div class="container-fluid mt-4 text-white">
-        <h1>Movimiento de Unidades</h1>
-      </br>
-      <div>
-          <a href="/movimientoAdd" class="btn btn-primary">Agregar Movimiento</a>
-      </div>
-      </br>
-      <h2>Movimientos Pendientes</h2>
-      <table class="table table-bordered table-hover table-dark">
-        <thead>
+  <h1>Movimiento de Unidades</h1>
+  </br>
+  <div>
+      <a href="/movimientoAdd" class="btn btn-primary">Agregar Movimiento</a>
+  </div>
+  </br>
+  {{#each movimiento}}
+    <h2>Movimientos Pendientes:</h2>
+    <table class="table table-bordered table-hover table-dark">
+      <thead>
+        <tr>
+          <th>Unidad</th>
+          <th>Finalizar</th>
+          <th>KM</th>
+          <th>Fecha Regreso</th>
+          <th>Cuartelero</th>
+          <th>Autorizo</th>           
+          <th>Chofer</th>
+          <th>Fecha</th>
+          <th>Propocito</th>           
+        </tr>
+      </thead>
+      <tbody>     
+        <tr>
+          <form action="/movimiento/finalizar/{{_id}}" method="POST">
+            <td>{{this.unidad}}</td>
+            <td>
+              <button type="submit" class="btn btn-info">Finalizar</button>
+            </td>
+            <td><input type="text" name="km" placeholder="Agregar KM"></td>
+            <td><input type="datetime-local" name="fechaFinal"></td>
+            <td>{{this.cuartelero}}</td>
+            <td>{{this.autorizo}}</td>
+            <td>{{this.chofer}}</td>
+            <td>{{this.fechaInicio}}</td>
+            <td>{{this.propocito}}</td>                                
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  {{/each}}
+  </br>
+  {{#if movimientoTerminado}}
+    <h2>Movimientos Finalizados:</h2>
+    <table class="table table-bordered table-hover table-dark">
+      <thead>
+        <tr>
+          <th>Unidad</th> 
+          <th>Cuartelero</th>
+          <th>Autorizo</th>           
+          <th>Chofer</th>
+          <th>Fecha</th>
+          <th>Propocito</th>
+          <th>Fecha Fin</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each movimientoTerminado}}
           <tr>
-            {{!-- <th>Num</th> --}}
-            <th>Unidad</th>
-            <th>Finalizar</th>
-            <th>KM</th>
-            <th>Fecha Regreso</th>
-            <th>Cuartelero</th>
-            <th>Autorizo</th>           
-            <th>Chofer</th>
-            <th>Fecha</th>
-            <th>Propocito</th>           
+            <td>{{this.unidad}}</td>
+            <td>{{this.cuartelero}}</td>
+            <td>{{this.autorizo}}</td> 
+            <td>{{this.chofer}}</td>
+            <td>{{this.fechaInicio}}</td>
+            <td>{{this.propocito}}</td>
+            <td>{{this.fechaFinal}}</td>
           </tr>
-        </thead>
-        <tbody>
-          {{#each movimiento}}
-              <tr>
-                <form action="/movimiento/finalizar/{{_id}}" method="POST">
-                  {{!-- <td>{{@index}}</td> --}}
-                  <td>{{this.unidad}}</td>
-                  <td>
-                    <button type="submit" class="btn btn-info">Finalizar</button>
-                  </td>
-                  <td><input type="text" name="km" placeholder="Agregar KM"></td>
-                  <td><input type="datetime-local" name="fechaFinal"></td>
-                  <td>{{this.cuartelero}}</td>
-                  <td>{{this.autorizo}}</td>
-                  <td>{{this.chofer}}</td>
-                  <td>{{this.fechaInicio}}</td>
-                  <td>{{this.propocito}}</td>                                
-                </form>
-              </tr>
-            {{/each}}
-
-          </tbody>
-        </table>
-      </br>
-      <h2>Movimientos Finalizados:</h2>
-      <table class="table table-bordered table-hover table-dark">
-        <thead>
-          <tr>
-            {{!-- <th>Num</th> --}}
-            <th>Unidad</th>
-           
-            <th>Cuartelero</th>
-            <th>Autorizo</th>           
-            <th>Chofer</th>
-            <th>Fecha</th>
-            <th>Propocito</th>
-            <th>Fecha Fin</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each movimientoTerminado}}
-            <tr>
-              {{!-- <td>{{@index}}</td> --}}
-              <td>{{this.unidad}}</td>
-              <td>{{this.cuartelero}}</td>
-              <td>{{this.autorizo}}</td> 
-              <td>{{this.chofer}}</td>
-              <td>{{this.fechaInicio}}</td>
-              <td>{{this.propocito}}</td>
-              <td>{{this.fechaFinal}}</td>
-            </tr>
-          {{/each}}
-
-        </tbody>
-      </table>
-      
-
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <h2>Ningun Movimiento en el dia de hoy.</h2>
+  {{/if}}
 </div>
 
