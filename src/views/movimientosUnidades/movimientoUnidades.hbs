@@ -24,27 +24,28 @@
         </thead>
         <tbody>
           {{#each movimiento}}
-            <tr>
-              {{!-- <td>{{@index}}</td> --}}
-              <td>{{this.unidad}}</td>
-              <td>{{this.cuartelero}}</td>
+              <tr>
+                <form action="/movimiento/finalizar/{{_id}}" method="POST">
+                  {{!-- <td>{{@index}}</td> --}}
+                  <td>{{this.unidad}}</td>
+                  <td>{{this.cuartelero}}</td>
+                  <td>{{this.autorizo}}</td>
+                  <td>{{this.chofer}}</td>
+                  <td>{{this.fechaInicio}}</td>
+                  <td>{{this.propocito}}</td>
+                  <td><input type="text" name="km" placeholder="Agregar KM"></td>
+                  <td><input type="datetime-local" name="fechaFinal"></td>
+                  <td>{{this.finalizo}}</td>
+                  <td>
+                    <button type="submit" class="btn btn-info">Finalizar</button>
+                  </td>
+                  <input type="hidden" name="_id" value="{{this._id}}">
+                </form>
+              </tr>
+            {{/each}}
 
-              <td>{{this.autorizo}}</td>
-              
-              <td>{{this.chofer}}</td>
-              <td>{{this.fechaInicio}}</td>
-              <td>{{this.propocito}}</td>
-              <td><input type="text" name="km" placeholder="Agregar KM"></td>
-              <td><input type="datetime-local" name="fechaFinal"></td>
-              <td>{{this.finalizo}}</td>
-              <td>
-                <a href="/edit/{{_id}}" class="btn btn-info">Finalizar</a>
-              </td>       
-            </tr>
-          {{/each}}
-
-        </tbody>
-      </table>
+          </tbody>
+        </table>
       </br>
       <h2>Movimientos Finalizados:</h2>
       <table class="table table-bordered table-hover table-dark">
@@ -57,7 +58,7 @@
             <th>Chofer</th>
             <th>Fecha</th>
             <th>Propocito</th>
-            <th>Finalizo</th>
+            <th>Fecha Fin</th>
           </tr>
         </thead>
         <tbody>
@@ -70,7 +71,7 @@
               <td>{{this.chofer}}</td>
               <td>{{this.fechaInicio}}</td>
               <td>{{this.propocito}}</td>
-              <td>{{this.finalizo}}</td>
+              <td>{{this.fechaFinal}}</td>
             </tr>
           {{/each}}
 

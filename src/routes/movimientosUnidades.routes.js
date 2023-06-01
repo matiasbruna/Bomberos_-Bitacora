@@ -9,7 +9,7 @@ import moment from "moment";
 const router = Router();
 
 router.get("/movimientos", async (req, res) => {
-  const movimiento = await Movimientos.find().lean();
+  const movimiento = await Movimientos.find({finalizo: false}).lean();
   const movimientoTerminado = await Movimientos.find({finalizo: true}).lean();
   res.render("movimientosUnidades/movimientoUnidades", { movimiento: movimiento, User, movimientoTerminado});
 });
@@ -38,6 +38,19 @@ router.post("/movimiento/agregar", async (req, res) => {
 
   await movimiento.save();
   res.redirect("/movimientos");
+});
+
+router.post("/movimiento/finalizar/:id", async (req, res) => {
+  const movimientoID = await Movimientos.findById(req.params.id);
+  const {fechaFinal, km} = await req.body;
+  let movimientoTerminado = movimientoID ;
+  movimientoTerminado.km = km;
+  movimientoTerminado.fechaFinal = fechaFinal;
+  movimientoTerminado.finalizo = 'true' ;
+  console.log(movimientoTerminado);
+
+  await Movimientos.findByIdAndUpdate(req.params.id, movimientoTerminado)
+  res.redirect("/movimientos")
 });
 
 export default router;
