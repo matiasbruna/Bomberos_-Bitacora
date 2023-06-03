@@ -19,7 +19,7 @@ router.post("/bomberos/agregar", async (req, res) => {
 });
 
 router.get("/bomberoAdd", (req, res) => {
-  res.render("bomberos/bomberoAdd", { Grados: Grados });
+  res.render("bomberos/bomberoAdd", { Grados: Grados,Estados });
 });
 
 router.get("/editarBomberos/:id", async (req, res) => {

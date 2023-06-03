@@ -1,6 +1,6 @@
 const Estados = [
-    {estado:"liciencia"},
     {estado:"Activo"},
+    {estado:"Liciencia"},
     {estado:"Baja"},
     {estado:"Situacion Especial"},
     {estado:"Cuerpo Auxiliar"},

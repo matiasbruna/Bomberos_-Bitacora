@@ -1,39 +1,79 @@
-<div class="container mt-4">
-  <div class="card card.body p-4 rounded-0 bg-dark text-white">
-    <h1>Ingresa Bombero nuevo</h1>
-    <form action="bomberos/agregar" method="post">
-      
-      <label for="nombre">Ingrese el nombre:</label>
-      <br />
-      <input  type="text" name="nombre" placeholder="Nombre"  id="nombre"/>
-      <br />
-      <label for="apellido">Ingrese el apellido:</label>
-      <br />
-      <input type="text" class="mx-auto" name="apellido" placeholder="Apellido" id="apellido" />
-      <br />
-      <label for="dni">DNI:</label>
-      <br />
-      <input type="text" class="mx-auto" name="dni" placeholder="DNI" id="dni" />
-      <br />
-      <label for="nOrden">Numero de orden:</label>
-      <br />
-      <input type="text" name="nOrden" placeholder="N de Orden" id="nOrden" />
-      <br />
-      <label for="rango">Rango</label>
-      <br />
-      {{!-- <input type="text" name="rango" placeholder="Rango" id="rango" /> --}}
-      <select name="rango" id="rango">
-        {{#each Grados}}
-            <option value="{{this.nombre}}">{{this.nombre}}</option>
-        {{/each}}
-      </select>
-      <br />
-       <div class="container mt-2 mb-2">
-        <button class="btn btn-primary">agregar</button>
-        <a href="/Bomberos" class="btn btn-primary">Volver</a>
-       </div>
-      
-    </form>
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Agregar Nuevo Bombero</h3>
+    </div>
+    <div class="card-body">
+      <form action="bomberos/agregar" method="POST">
+          <div class="mb-3">
+            <label for="nombre">Ingrese el nombre:</label>
+            <br />
+            <input  type="text" name="nombre" placeholder="Nombre" class="form-control"  id="nombre"/>
+          </div>
+
+          <div class="mb-3">
+            <label for="apellido">Ingrese el apellido:</label>
+            <br />
+            <input type="text"  name="apellido" placeholder="Apellido" class="form-control" id="apellido" />
+          </div>
+
+          <div class="mb-3">
+            <label for="dni">DNI:</label>
+            <br />
+            <input type="text"  name="dni" placeholder="DNI" class="form-control" id="dni" />
+          </div>
+
+          <div class="mb-3">
+            <label for="nOrden">Numero de orden:</label>
+            <br />
+            <input type="text" name="nOrden" placeholder="N de Orden" class="form-control" id="nOrden" />
+          </div>
+
+          <div class="mb-3">
+            <label for="rango">Rango:</label>
+            <br />
+            <select class="form-select" name="rango" id="rango">
+              {{#each Grados}}
+                  <option value="{{this.nombre}}">{{this.nombre}}</option>
+              {{/each}}
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="title">Estado:</label>
+            <select class="form-select" name="estado">
+              {{#each Estados}}
+              <option value="{{this.estado}}">{{this.estado}}</option>
+              {{/each}}
+            </select>   
+          </div>
+
+          <div class="mb-3">
+            <label>
+                <input 
+                type="checkbox" 
+                name="despachador"
+                value="true"
+              >    Despachador.      
+            </label>  
+          </div>  
+          <div class="mb-3">
+            <label>
+                <input 
+                type="checkbox" 
+                name="admin"
+                value="true"
+              >   Administrador.      
+            </label>  
+          </div>  
+          <br />
+          <div class="d-grid gap-2">
+
+            <button class="btn btn-primary">agregar</button>
+
+            <a href="/Bomberos" class="btn btn-primary">Volver</a>
+          </div>
+      </form>
+    </div>
   </div>
-  
 </div>
