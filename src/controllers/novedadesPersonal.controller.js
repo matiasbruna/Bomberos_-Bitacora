@@ -7,9 +7,11 @@ import  {errors , reiniciarErrors } from "../models/errors";
  
 export const mostrarNovedades = async (req,res)=>{
 
-    const novedadPersonal = await NovedadesPersonal.find({finalizo:true}).sort({ fechaInicio: -1 }).lean();
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0); // Establecer las horas, minutos, segundos y milisegundos a cero
+    const novedadPersonal = await NovedadesPersonal.find({finalizo: true, fechaFinal: {$gte: hoy}}).sort({ fechaInicio: -1 }).lean();
     const novedadPersonalPendiente = await NovedadesPersonal.find({finalizo:false}).sort({ fechaInicio: -1 }).lean();
-    
+    console.log(hoy);
     res.render("novedadesPersonal/novedadesPersonal",{novedadPersonal,novedadPersonalPendiente,User})
 };
 
@@ -29,11 +31,11 @@ export const guardadNovedad = async (req,res)=>{
     novedadePersonal.finalizo = false;
     console.log(novedadePersonal);
     //reviso que esten todos los datos
-    const {descripcion, fechaInicial} = novedadePersonal;
+    const {descripcion, fechaInicio} = novedadePersonal;
     if(!descripcion){
        errors.push({text: 'Debe ingresar una descripcion'})
     }
-    if(fechaInicial == null){
+    if(fechaInicio == null){
         novedadePersonal.fechaInicio = new Date();
     }
    
