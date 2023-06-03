@@ -24,6 +24,23 @@
                             class="form-control"   
                         >{{novedadPorFinalizar.descripcion}} </textarea>
                     </div>
+                    {{#if novedadPorFinalizar.finalizo}}
+                        <div class="mb-3">
+                        <label for="nombre">Fecha Inicio:</label>
+                        <br>
+                        <p><strong>{{novedadPorFinalizar.fechaInicio}}</strong></p>   
+                        </div>
+                        <div class="mb-3">
+                            <label for="situacion">Fecha Final:</label>
+                            <br>
+                            <p><strong>{{novedadPorFinalizar.fechaFinal}}</strong></p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="situacion">Despachador que recabo datos: </label>
+                            <br>
+                            <p><strong>{{novedadPorFinalizar.cuartelero}}</strong></p>
+                        </div>
+                    {{/if}}
                 {{/if}}       
                 <a href="/novedadePersonal" class="btn btn-primary">Volver</a>          
             </form>
