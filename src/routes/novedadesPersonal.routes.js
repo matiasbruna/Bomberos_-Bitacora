@@ -4,7 +4,8 @@ import {
     CargaNovedadPersonal,
     mostrarNovedades,
     mostrarNovedad,
-    finalizarNovedad
+    finalizarNovedad,
+   
 } from "../controllers/novedadesPersonal.controller"
 
 const router = Router();
@@ -19,6 +20,10 @@ router.post("/novedadesPersonales/guardar",guardadNovedad);
 router.get("/novedadesPersonal/mostrarNovedad/:id", mostrarNovedad);
 
 router.get("/novedadesPersonal/finalizarNovedad/:id",finalizarNovedad);
+
+
+
+
 
 
 

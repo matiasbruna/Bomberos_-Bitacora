@@ -7,6 +7,7 @@ import novedaesRoutes from "./routes/novedades.routes";
 import movimientoUnidades from "./routes/movimientosUnidades.routes";
 import novedadesPersonal from "./routes/novedadesPersonal.routes";
 import loginRoutes from "./routes/login.routes";
+import flash from "connect-flash";
 
 
 import path from "path";
@@ -29,6 +30,7 @@ app.set("views", path.join(__dirname, "views"));
 
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
+app.use(flash());
 
 
 let globalUsername = null;
@@ -45,8 +47,13 @@ app.use(novedadesPersonal);
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// Global Variables
 // app.use((req, res, next) => {
-//   return res.status(404).render("404");
+//   res.locals.success_msg = req.flash("success_msg");
+//   res.locals.error_msg = req.flash("error_msg");
+//   res.locals.error = req.flash("error");
+//   res.locals.user = req.user || null;
+//   next();
 // });
 
 
