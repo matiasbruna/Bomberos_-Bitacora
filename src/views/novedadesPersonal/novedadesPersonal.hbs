@@ -1,2 +1,78 @@
-<h1>novedaes.Perosnal.</h1>
-<a href="/novedadesPersonal/cargar" class="btn btn-primary">Agregar Novedad</a>
+
+<div class="container-fluid">
+    <h1>Novedades del personal.</h1>
+    </br>
+    <div>
+      <a href="/novedadesPersonal/cargar" class="btn btn-primary">Agregar Novedad</a>
+     </div>
+    </br>
+    {{#if novedadPersonalPendiente}}
+        <h3>Novedades de personal pendientes:</h3>
+        <br>
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr>
+                <th>Nombre</th>
+                <th>Situacion</th>
+                <th>Fecha</th>
+                <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each novedadPersonalPendiente}}
+                <tr>
+                    <td>{{this.bombero}}</td>
+                    <td>{{this.situacion}}</td>        
+                    <td>{{this.fechaInicio}}</td>
+                    <td>
+                    <a href="novedadesPersonal/mostrarNovedad/{{this._id}}" class="btn btn-info">Ver</a>
+                    <a href="novedadesPersonal/finalizarNovedad/{{this._id}}" class="btn btn-primary">Terminar</a>
+                    </td>       
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <hr class="my-4" />
+        <h3>No hay novedades pendientes.</h3>
+        <hr class="my-4" />
+
+    {{/if}}
+
+    {{#if novedadPersonal}}
+        <h3>Novedades de personal finalizadas:</h3>
+            <br>
+        <table class="table table-bordered table-hover table-dark">
+            <thead>
+                <tr>
+                <th>Nombre</th>
+                <th>Situacion</th>
+                <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each novedadPersonal}}
+                <tr>
+                    <td>{{this.bombero}}</td>
+                    <td>{{this.situacion}}</td>
+                    <td>
+                    <a href="novedadesPersonal/mostrarNovedad/{{this._id}}" class="btn btn-info">Ver</a>
+                    </td>       
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <hr class="my-4" />
+        <h3>Sin novedades finalizadas en el dia de hoy.</h3>
+        <hr class="my-4" />
+    {{/if}}
+
+
+
+
+
+
+    
+
+</div>

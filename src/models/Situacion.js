@@ -1,5 +1,5 @@
 const Situacion = [
-    {estado:"liciencia"},
+    {estado:"Liciencia"},
     {estado:"Vacaciones"},
     {estado:"Suspendido"},
     {estado:"Enfermedad"},
