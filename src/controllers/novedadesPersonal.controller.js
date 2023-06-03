@@ -6,12 +6,11 @@ import  {errors , reiniciarErrors } from "../models/errors";
 
  
 export const mostrarNovedades = async (req,res)=>{
-
+    reiniciarErrors(); //reinicio los errores cargados en el objeto para no mostrar errores de otra funcionalodad.
     const hoy = new Date();
     hoy.setHours(0, 0, 0, 0); // Establecer las horas, minutos, segundos y milisegundos a cero
     const novedadPersonal = await NovedadesPersonal.find({finalizo: true, fechaFinal: {$gte: hoy}}).sort({ fechaInicio: -1 }).lean();
     const novedadPersonalPendiente = await NovedadesPersonal.find({finalizo:false}).sort({ fechaInicio: -1 }).lean();
-    console.log(hoy);
     res.render("novedadesPersonal/novedadesPersonal",{novedadPersonal,novedadPersonalPendiente,User})
 };
 
@@ -29,20 +28,32 @@ export const guardadNovedad = async (req,res)=>{
     // le agrego los datos que necesito para la base de datos.
     novedadePersonal.cuartelero = User[0];
     novedadePersonal.finalizo = false;
-    console.log(novedadePersonal);
     //reviso que esten todos los datos
     const {descripcion, fechaInicio} = novedadePersonal;
+    
     if(!descripcion){
        errors.push({text: 'Debe ingresar una descripcion'})
     }
     if(fechaInicio == null){
         novedadePersonal.fechaInicio = new Date();
     }
-   
+
+    // verifico que no tenga un novedad repetida.
+
+    const novedadPersonalPendiente = await NovedadesPersonal.find({finalizo:false}).sort({ fechaInicio: -1 }).lean(); //novedades pendientes.
+
+    //recorro todos los pendientes para buscar una coincidencia.
+    for (const pendiente of novedadPersonalPendiente){
+        
+        if (pendiente.bombero == novedadePersonal.bombero){
+            errors.push({text: 'El bombero seleccionado tiene una novedad pendiente.'});
+            break;
+        }
+    }
+    
     if (errors.length > 0)
     {
-        console.log (fechaInicial);
-        res.redirect("/novedadesPersonal/cargar");
+        res.redirect("/novedadesPersonal/cargar"); //vuelvo a recargar la vista para mostrar los errores;
     }
     else
     {
