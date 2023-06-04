@@ -4,77 +4,111 @@
       <h3>Editar Bombero</h3>
     </div>
     <div class="card-body">
-      <form action="/bomberos/editBombero/{{bombero._id}}" method="POST">
-        {{!-- <input type="hidden" name="_method" value="PUT" /> --}}
-          <div class="mb-3">
-            <label for="title">Nombre:</label>
-            <input
-              type="text"
-              name="nombre"
-              class="form-control"
-              value="{{bombero.nombre}}"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="title">Apellido:</label>
-            <input
-              type="text"
-              name="apellido"
-              class="form-control"
-              value="{{bombero.apellido}}"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="title">Dni:</label>
-            <input
-              type="text"
-              name="dni"
-              class="form-control"
-              value="{{bombero.dni}}"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="title">Numero de Orden:</label>
-            <input
-              type="text"
-              name="nOrden"
-              class="form-control"
-              value="{{bombero.nOrden}}"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="title">Rango:</label>
-            <input
-              type="text"
-              name="rango"
-              class="form-control"
-              value="{{bombero.rango}}"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="title">Estado:</label>
-            <select name="estado">
-              {{#each Estados}}
-              <option value="{{this.estado}}">{{this.estado}}</option>
-              {{/each}}
-            </select>   
-          </div>
-          <div class="mb-3">
-            <label>
-                <input 
+
+      <form action="/bomberos/editBombero/{{_id}}" method="POST">
+         <div class="mb-3 d-none">
+          <label for="title">Id:</label>
+          <input
+            type="text"
+            name="_id"
+            class="form-control"
+            value="{{_id}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Nombre:</label>
+          <input
+            type="text"
+            name="nombre"
+            class="form-control"
+            value="{{nombre}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Apellido:</label>
+          <input
+            type="text"
+            name="apellido"
+            class="form-control"
+            value="{{apellido}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Dni:</label>
+          <input
+            type="text"
+            name="dni"
+            class="form-control"
+            value="{{dni}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Numero de Orden:</label>
+          <input
+            type="text"
+            name="nOrden"
+            class="form-control"
+            value="{{nOrden}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Rango Actual:</label>
+          <input
+            type="text"
+            class="form-control"
+            value="{{rango}}"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="title">Rango Nuevo:</label>
+          <br>
+          <select class="form-select" name="rango">
+            {{#each Grados}}
+            <option value="{{this.nombre}}">{{this.nombre}}</option>
+            {{/each}}
+          </select>   
+        </div>
+        <div class="mb-3">
+          <label for="title">Estado:</label>
+          <br>
+          <select class="form-select" name="estado">
+            {{#each Estados}}
+            <option value="{{this.estado}}">{{this.estado}}</option>
+            {{/each}}
+          </select>   
+        </div>
+
+        <div class="mb-3">
+          <label>
+              <input 
+              type="checkbox" 
+              name="despachador"
+              value="true"
+                {{#if despachador}}
+                checked
+                {{/if}}
+              >
+                Despachador.
+          </label>  
+        </div>  
+        <div class="mb-3">
+          <label>
+              <input 
                 type="checkbox" 
-                name="despachador"
+                name="admin"
                 value="true"
-                 {{#if bombero.despachador}}
-                  checked
-                 {{/if}}
-                >
-                 Despachador.
-            </label>  
-          </div>  
-        <button class="btn btn-primary w-100" type="submit">
-          Guardar
-        </button>
+                {{#if admin}}
+                checked
+                {{/if}}
+              >  Administrador.
+          </label>         
+        </div>  
+        <div class="d-grid gap-2">
+
+            <button class="btn btn-primary" type="submit">Guardar</button>
+
+            <a href="/Bomberos" class="btn btn-primary">Volver</a>
+          </div>
       </form>
     </div>
   </div>
