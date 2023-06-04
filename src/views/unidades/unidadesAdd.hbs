@@ -1,31 +1,40 @@
-<div class="container mt-4 bg-dark text-white" >
-  <h1>Ingrese Nueva Unidad</h1>
-  <form action="unidades/agregar" method="post">
-    <br />
-    <label for="numero">Numero:</label>
-    <br />
-    <input type="text" name="numero" placeholder="Numero" id="numero" />
-    <br />
-    <label for="marca">Marca</label>
-    <br />
-    <input type="text" name="marca" placeholder="Marca" id="marca" />
-    <br />
-    <label for="propocito">Numero de orden:</label>
-    <br />
-    <input
-      type="text"
-      name="propocito"
-      placeholder="propocito"
-      id="propocito"
-    />
-    <br />
-    <label for="km">KM:</label>
-    <br />
-    <input type="text" name="km" placeholder="km" id="km" />
-    <br />
-    <div class="container mt-2 mb-2">
-      <button class="btn btn-primary">agregar</button>
-      <a href="/unidades" class="btn btn-primary">Volver</a>
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Agregar Nueva Unidad</h3>
     </div>
-  </form>
+    <div class="card-body">
+      <form action="/unidades/agregar" method="POST">
+          <div class="mb-3">
+            <label for="numero">Ingrese el Numero:</label>
+            <br />
+            <input  type="text" name="numero" placeholder="Numero" class="form-control" value="{{numero}}"  id="numero"/>
+          </div>
+
+          <div class="mb-3">
+            <label for="marca">Marca:</label>
+            <br />
+            <input type="text"  name="marca" placeholder="Marca" class="form-control" value="{{marca}}" id="marca" />
+          </div>
+
+          <div class="mb-3">
+            <label for="propocito">Propocito:</label>
+            <br />
+            <input type="text"  name="propocito" placeholder="Propocito" class="form-control" value="{{propocito}}" id="propocito" />
+          </div>
+
+          <div class="mb-3">
+            <label for="km">KM:</label>
+            <br />
+            <input type="text" name="km" placeholder="km" class="form-control" value="{{km}}" id="km" />
+          </div>
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="submit">Agregar</button>
+
+            <a href="/Bomberos" class="btn btn-primary">Volver</a>
+          </div>
+      </form>
+    </div>
+  </div>
 </div>

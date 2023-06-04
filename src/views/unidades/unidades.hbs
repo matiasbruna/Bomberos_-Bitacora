@@ -1,32 +1,37 @@
-<div class="container-fluid  p-4  mt-4 text-white">
+<div class="container p-4  mt-4">
   <h1>Listado de Unidades</h1>
   </br>
+  {{#if Admin}}
   <div>
       <a href="/unidadesAdd" class="btn btn-primary">Agregar nueva Unidad</a>
   </div>
+  {{/if}}
   </br>
 
-  <table class="table table-bordered table-hover table-dark">
+  <table class="table table-hover table-sm table-light ">
     <thead>
       <tr>
         <th>Num</th>
         <th>Marca</th>
         <th>Propocito</th>
         <th>km</th>
+        {{#if Admin}}
         <th>Accion</th>
+        {{/if}}
       </tr>
     </thead>
     <tbody>
-      {{#each unidad}}
+      {{#each unidades}}
         <tr>
           <td>{{this.numero}}</td>
           <td>{{this.marca}}</td>
           <td>{{this.propocito}}</td>
           <td>{{this.km}}</td>
-          <td>
-            <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
-            <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
-          </td>       
+          
+            <td>
+              <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
+            </td>   
+   
         </tr>
       {{/each}}
     </tbody>
