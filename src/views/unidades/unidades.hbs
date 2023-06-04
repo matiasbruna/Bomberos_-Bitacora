@@ -7,33 +7,34 @@
   </div>
   {{/if}}
   </br>
-
-  <table class="table table-hover table-sm table-light ">
-    <thead>
-      <tr>
-        <th>Num</th>
-        <th>Marca</th>
-        <th>Propocito</th>
-        <th>km</th>
-        {{#if Admin}}
-        <th>Accion</th>
-        {{/if}}
-      </tr>
-    </thead>
-    <tbody>
-      {{#each unidades}}
+  <div class="table-responsive">
+    <table class="table table-hover table-sm table-light ">
+      <thead>
         <tr>
-          <td>{{this.numero}}</td>
-          <td>{{this.marca}}</td>
-          <td>{{this.propocito}}</td>
-          <td>{{this.km}}</td>
-          
-            <td>
-              <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
-            </td>   
-   
+          <th>Num</th>
+          <th>Marca</th>
+          <th>Propocito</th>
+          <th>km</th>
+          {{#if Admin}}
+          <th>Accion</th>
+          {{/if}}
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each unidades}}
+          <tr>
+            <td>{{this.numero}}</td>
+            <td>{{this.marca}}</td>
+            <td>{{this.propocito}}</td>
+            <td>{{this.km}}</td>
+            
+              <td>
+                <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
+              </td>   
+    
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
