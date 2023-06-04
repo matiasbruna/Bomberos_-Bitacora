@@ -1,4 +1,4 @@
-<div class="col-md-4 mx-auto">
+<div class="col-md-4 mx-auto mt-7">
   <div class="card">
     <div class="card-header text-center">
       <h3>LogIn Despachador</h3>
@@ -8,9 +8,9 @@
         <div class="mb-3">
             <label for="title">Despachador:</label>
             <br>
-            <select name="despachador">
+            <select name="apellido">
               {{#each bombero}}
-              <option value="{{this.nombre}}">{{this.apellido}}, {{this.nombre}}</option>
+              <option value="{{this.apellido}}">{{this.apellido}}, {{this.nombre}}</option>
               {{/each}}
             </select>   
         </div>
@@ -30,5 +30,4 @@
     </div>
   </div>
 </div>
-<p>{{user}}</p>
 

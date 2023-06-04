@@ -1,8 +1,8 @@
 import NovedadesPersonal from "../models/NovedadesPersonal";
 import Bomberos from "../models/Bomberos";
 import Situacion from "../models/Situacion";
-import User from "../models/auth"
-import  {errors , reiniciarErrors } from "../models/errors";
+import {User, Admin} from "../models/auth"
+import  {errors , reiniciarErrors } from "../models/Errors";
 
  
 export const mostrarNovedades = async (req,res)=>{
