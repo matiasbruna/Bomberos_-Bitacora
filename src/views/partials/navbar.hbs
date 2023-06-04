@@ -22,9 +22,12 @@
               Movimientos
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              {{#if Admin}}
               <li><a class="dropdown-item" href="/bomberos">Bomberos</a></li>
               <li><a class="dropdown-item" href="/Unidades">Unidades</a></li>
-              <li><a class="dropdown-item" href="/novedades">Novedades</a></li>
+              <li><hr class="dropdown-divider"></li>
+              {{/if}}
+              <li><a class="dropdown-item" href="/novedades">Novedades</a></li>             
               <li><a class="dropdown-item" href="/novedadePersonal">Novedades Personal</a></li>
               <li><a class="dropdown-item" href="/movimientos">Movimienos Unidades</a></li>
               <li><hr class="dropdown-divider"></li>
