@@ -1,53 +1,52 @@
-<div class="container-fluid text-white mt-4">
-    <h1>Agregar Movimiento de Unidades</h1>
-    </br>
-    <form action="movimiento/agregar"
-            method="post">
-        <div>
-            <button  class="btn btn-primary">Agregar Movimiento</button>
-            <a href="/movimientos" class="btn btn-primary">Cancelar</a>
-        </div>
-        </br>
-        <table class="table table-bordered table-hover table-dark">
-        <thead>
-            <tr>
-            <th>Unidad</th>
-            <th>Autorizo</th>
-            <th>Chofer</th>
-            <th>Propocito</th>
-            <th>Fecha y Hora</th>
-            </tr>
-        </thead>
-        <tbody>
-                <tr>
-                    <td>
-                        <select name="unidad" id="unidad">
-                            {{#each unidad}}
-                                <option value="{{this.numero}}">{{this.numero}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
-                    <td>
-                        <select name="autorizo" id="autorizo">
-                            {{#each bombero}}
-                                <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
-                    <td>
-                        <select name="chofer" id="chofer">
-                            {{#each bombero}}
-                                <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
-                            {{/each}}
-                        </select>
-                    </td>
-                    <td><input type="text" name="propocito" id="propocito" /></td>
-                    <td><input type="datetime-local" name="fechaInicio"></td>
-                </tr>
-            </tbody>
-        </table>
-    
-    </form>
+<div class="col-md-4 mx-auto">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Agregar Movimiento de Unidad</h3>
+    </div>
+    <div class="card-body">
+        <form action="/movimiento/agregar" method="POST">
+            <div class="mb-3">
+                <label for="unidad">Uniad:</label>
+                <select class="form-select" name="unidad">
+                {{#each unidad}}
+                    <option value="{{this.numero}}">{{this.numero}} --{{this.propocito}}</option>
+                    {{/each}}
+                </select>   
+            </div>
+            <div class="mb-3">
+                <label for="autorizo">Autorizo:</label>
+                <select class="form-select" name="autorizo" id="autorizo">
+                    {{#each bombero}}
+                        <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                    {{/each}}
+                </select>
+            </div>  
+            <div class="mb-3">
+                <label for="chofer">Chofer:</label>
+                <select class="form-select" name="chofer" id="chofer">
+                    {{#each bombero}}
+                        <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                    {{/each}}
+                </select>
+            </div> 
+            <div class="mb-3">
+                <label for="propocito">Propocito:</label>
+                <br />
+                <input type="text" name="propocito" class="form-control" id="propocito" />
+            </div>
+                <div class="mb-3">
+                <label for="fechaInicio">Fecha de Inicio:</label>
+                <br />
+                <input type="datetime-local" class="form-control" name="fechaInicio">
+                </div>
+                <br />
+                <div class="d-grid gap-2">
 
+                <button class="btn btn-primary" type="submit">Agregar</button>
 
+                <a href="/movimientos" class="btn btn-primary">Volver</a>
+            </div>
+        </form>
+    </div>
+  </div>
 </div>
