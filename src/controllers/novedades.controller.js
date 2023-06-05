@@ -14,12 +14,44 @@ export const mostrarNovedad = async (req, res) => {
 
 export const cargaNovedad = async (req, res) => {
     const bombero = await Bomberos.find().lean();
-    res.render("novedades/novedadesAdd", {User});
+    res.render("novedades/novedadesAdd", {User, Admin});
 };
 
 export const guardaNovedad = async (req, res) => {
-    const novedades = Novedades(req.body);
-    console.log(novedades);
-    await novedades.save();
-    res.redirect("/novedades");
-  };
+    reiniciarErrors();
+    try{
+        const novedades = Novedades(req.body);
+
+        const {descripcion} = novedades;
+
+        if(!descripcion)
+        {
+            errors.push({text:'Debe ingresar al menos una descripcion.'});
+
+        }
+
+        if(errors.length>0){
+            res.render("novedades/novedadesAdd", {User, Admin, errors});
+        }
+        else{
+
+            novedades.bombero = User[0];
+            await novedades.save();
+            res.redirect("/novedades");
+
+        }     
+    }catch(error){
+        console.error(error);
+    }
+    
+};
+
+export const verNovedad = async(req,res)=>{
+    
+    try{
+        const novedad = await Novedades.findById(req.params.id).lean();
+        res.render("novedades/novedad",{novedad, User,Admin})
+    }catch(error){
+        console.error(error);
+    }
+};

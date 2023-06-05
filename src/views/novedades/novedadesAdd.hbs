@@ -1,18 +1,12 @@
-
-<div class="col-md-4 mx-auto pt-5 ">
+<div class="col-md-4 mx-auto mt-7">
   <div class="card">
-    <div class="card-header bg-dark text-center">
-      <h3 class="text-white">Agregar Novedades</h3>
+    <div class="card-header text-center">
+      <h3>Nueva Novedad</h3>
     </div>
-    <div class="card-body text-left">
-      <form action="novedadesAgregar" method="POST">
+    <div class="card-body">
+      <form action="/novedadesAgregar" method="POST">
         <div class="mb-3">
-          <label for="title">Bombero</label>
-            <select name="bombero" id="bombero">
-              {{#each bombero}}
-              <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
-              {{/each}}
-            </select>
+          <label for="Despachador">{{User}}</label>
         </div>
         <div class="mb-3">
           <label for="description">Description:</label>
@@ -22,15 +16,19 @@
             placeholder="Descripcion"
           ></textarea>
         </div>
-        <button class="btn btn-primary w-100" type="submit">
-          Guardar novedad
-        </button>
+        <div class="mb-3">
+          <button class="btn btn-primary w-100" type="submit">
+          Guardar Novedad
+          </button>
+        </div>
+        <div class="mb-3">
+          <a href="/novedades" class="btn btn-primary w-100">Volver</a>
+        </div>
       </form>
+      
     </div>
   </div>
 </div>
-
-
 
 
 

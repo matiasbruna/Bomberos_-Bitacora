@@ -1,0 +1,24 @@
+<div class="col-md-4 mx-auto mt-7">
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>Novedad</h3>
+    </div>
+    <div class="card-body">
+      <form action="/novedadesAgregar" method="POST">
+        <div class="mb-3">
+          <label for="Despachador">Despachador:</label>
+          <h4>{{novedad.bombero}}</h4>
+        </div>
+        <div class="mb-3">
+          <label for="description">Description:</label>
+          <p>{{novedad.descripcion}}</p>
+        </div>
+        <div class="mb-3">
+          <a href="/novedades" class="btn btn-primary w-100">Volver</a>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+
