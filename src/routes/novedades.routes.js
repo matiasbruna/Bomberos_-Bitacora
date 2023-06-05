@@ -1,26 +1,12 @@
 // rutas novedades.
 import { Router } from "express";
-import Bomberos from "../models/Bomberos";
-import Novedades from "../models/Novedades";
-import User from "../models/auth";
+import { cargaNovedad, guardaNovedad, mostrarNovedad } from "../controllers/novedades.controller";
 const router = Router();
-router.get("/novedades", async (req, res) => {
-  const novedad = await Novedades.find().lean().sort({ _id: -1 });
-  novedad.sort();
 
-  res.render("novedades/novedades", { novedad: novedad ,User});
-});
+router.get("/novedades", mostrarNovedad);
 
-router.get("/novedadesAdd", async (req, res) => {
-  const bombero = await Bomberos.find().lean();
-  res.render("novedades/novedadesAdd", { bombero: bombero });
-});
+router.get("/novedadesAdd", cargaNovedad);
 
-router.post("/novedadesAgregar", async (req, res) => {
-  const novedades = Novedades(req.body);
-  console.log(novedades);
-  await novedades.save();
-  res.redirect("/novedades");
-});
+router.post("/novedadesAgregar", guardaNovedad)
 
 export default router;
