@@ -63,3 +63,61 @@ export const guardarUnidad = async (req, res) => {
         console.error(error);
     }
 };
+
+export const editarUnidad = async(req,res )=> {
+    reiniciarErrors();
+    try{
+        const unidad = Unidades(req.body);
+
+        const {_id, numero, marca , propocito,km, } = unidad
+        
+        if(!numero){
+            errors.push({text:'Debe ingresar un numero valido'});
+        }
+        if(!marca){
+            errors.push({text:'Debe ingresar una marca'});
+        }
+        if(!propocito){
+            errors.push({text:'Debe ingresar un propocito'});
+        }
+        if(!km){
+            errors.push({text:'Debe ingresar km de la unidad.'});
+        }
+
+        if (errors.length > 0 ){
+
+            const unidad = await Unidades.findById(req.params.id).lean();
+
+            res.render("unidades/unidadesEdit.hbs",{
+                unidad,
+                User,
+                Admin,
+                errors,
+            });
+
+        }
+        else 
+        {
+            await Unidades.findByIdAndUpdate(req.params.id,{
+             numero,
+             marca,
+             propocito, 
+             km
+              });
+                    
+            res.redirect("/unidades");
+        }
+    }
+    catch(error){
+        console.error(error);
+    }
+
+}
+
+export const mostrarUnidadEditar = async (req,res)=>{
+
+    const unidad = await Unidades.findById(req.params.id).lean();
+    
+    
+    res.render("unidades/unidadesEdit.hbs", {unidad, User , Admin});
+}
