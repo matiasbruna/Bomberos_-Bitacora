@@ -1,0 +1,49 @@
+<div class="col-md-4 mx-auto">
+  <div class="card">
+        <div class="card-header text-center">
+        <h3>Detalle de la novedad</h3>
+        </div>
+        <div class="card-body">
+          <form action="#" method="POST">
+                {{#if novedadPorFinalizar}}
+                    <div class="mb-3">
+                        <label for="nombre">Bombero:</label>
+                        <br>
+                        <p><strong>{{novedadPorFinalizar.bombero}}</strong></p>   
+                    </div>
+                    <div class="mb-3">
+                        <label for="situacion">Situacion:</label>
+                        <br>
+                        <p><strong>{{novedadPorFinalizar.situacion}}</strong></p>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion">Descripcion:</label>
+                        <br />
+                        <textarea
+                            name="descripcion"
+                            class="form-control"   
+                        >{{novedadPorFinalizar.descripcion}} </textarea>
+                    </div>
+                    {{#if novedadPorFinalizar.finalizo}}
+                        <div class="mb-3">
+                        <label for="nombre">Fecha Inicio:</label>
+                        <br>
+                        <p><strong>{{novedadPorFinalizar.fechaInicio}}</strong></p>   
+                        </div>
+                        <div class="mb-3">
+                            <label for="situacion">Fecha Final:</label>
+                            <br>
+                            <p><strong>{{novedadPorFinalizar.fechaFinal}}</strong></p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="situacion">Despachador que recabo datos: </label>
+                            <br>
+                            <p><strong>{{novedadPorFinalizar.cuartelero}}</strong></p>
+                        </div>
+                    {{/if}}
+                {{/if}}       
+                <a href="/novedadePersonal" class="btn btn-primary">Volver</a>          
+            </form>
+        </div>
+  </div>
+</div>

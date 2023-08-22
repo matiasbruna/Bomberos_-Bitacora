@@ -2,70 +2,78 @@
 const Grados = [
     {
         numero: 1,
-        nombre: "Comandate General",
+        nombre: "Comisario General",
     },
     {
         numero: 2,
-        nombre: "Comandante Mayor",
+        nombre: "Comisario Mayor",
     },
     {
         numero: 3,
-        nombre: "Comandante",
+        nombre: "Comisario Ispector",
     },
     {
         numero: 4,
-        nombre: "Sub-Comandante",
+        nombre: "Comisario",
     },
     {
         numero: 5,
-        nombre: "Oficial Principal",
+        nombre: "Sub Comisario", 
     },
     {
         numero: 6,
-        nombre: "Oficial Ispector",
+        nombre: "Oficial Principal",
     },
     {
         numero: 7,
-        nombre: "Oficial Ayudante",
+        nombre: "Oficial Ispector",
     },
     {
         numero: 8,
-        nombre: "Sub-Comandante",
+        nombre: "Oficial sub Ispector",
     },
     {
         numero: 9,
-        nombre: "Sub Oficial Mayor",
+        nombre: "Oficial Ayudante",
     },
     {
         numero: 10,
-        nombre: "Sub Oficial Principal",
+        nombre: "Sub Oficial Mayor",
     },
     {
         numero: 11,
-        nombre: "Sargento Primero",
+        nombre: "Sub Oficial Principal",
     },
     {
         numero: 12,
-        nombre: "Sargento",
+        nombre: "Sargento Ayudante",
     },
     {
         numero: 13,
-        nombre: "Cabo Primero",
+        nombre: "Sargento Primero",
     },
     {
         numero: 14,
-        nombre: "Cabo",
+        nombre: "Sargento",
     },
     {
         numero: 15,
-        nombre: "Bombero",
+        nombre: "Cabo Primero",
     },
     {
         numero: 16,
-        nombre: "Aspirante Mayor",
+        nombre: "Cabo",
     },
     {
         numero: 17,
+        nombre: "Bombero",
+    },
+    {
+        numero: 18,
+        nombre: "Aspirante Mayor",
+    },
+    {
+        numero: 19,
         nombre: "Aspirante Menor",
     },
 ];

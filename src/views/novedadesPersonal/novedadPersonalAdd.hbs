@@ -1,0 +1,46 @@
+
+<div class="col-md-4 mx-auto">
+  <div class="card">
+        <div class="card-header text-center">
+        <h3>Nueva novedad del personal.</h3>
+        </div>
+        <div class="card-body">
+        <form action="/novedadesPersonales/guardar" method="POST">
+                <div class="mb-3">
+                    <label for="nombre">Bombero:</label>
+                    <br>
+                    <select name="bombero" id="">
+                        {{#each bomberos}}
+                        <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                        {{/each}}
+                    </select>                    
+                </div>
+                <div class="mb-3">
+                    <label for="situacion">Situacion:</label>
+                    <br>
+                    <select name="situacion" id="">
+                        {{#each Situacion}}
+                        <option value="{{estado}}">{{estado}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion">Descripcion:</label>
+                    <br />
+                    <textarea
+                        name="descripcion"
+                        class="form-control"
+                        placeholder="Description"
+                    ></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="fechaInicio">Fecha Inicio:</label>
+                    <br />
+                    <input type="datetime-local" name="fechaInicio">
+                </div>     
+                <button class="btn btn-primary">Cargar Novedad</button>                       
+                <a href="/novedadePersonal" class="btn btn-primary">Volver</a>          
+            </form>
+        </div>
+  </div>
+</div>

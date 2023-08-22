@@ -1,38 +1,24 @@
 //Rutas de Modulo Bomberos
 
 import { Router } from "express";
-import Bomberos from "../models/Bomberos";
-import Grados from "../models/Grados";
-import Estados from "../models/Estados"
 const router = Router();
+import { 
+  cargarNuevoBombero,
+  editarBombero,
+  mostrarBomberos, 
+  vistaEditarBombero, 
+  vistaNuevoBombero
+} from "../controllers/bomberos.constroller";
 
-router.get("/Bomberos", async (req, res) => {
-  const TodosBomberos = await Bomberos.find().lean();
-  res.render("bomberos/bomberos", { TodosBomberos: TodosBomberos });
-});
+router.get("/Bomberos", mostrarBomberos);
 
-router.post("/bomberos/agregar", async (req, res) => {
-  const bombero = Bomberos(req.body);
-  await bombero.save();
-  res.redirect("/bomberos");
-});
+router.post("/bomberos/agregar", cargarNuevoBombero);
 
-router.get("/bomberoAdd", (req, res) => {
-  res.render("bomberos/bomberoAdd", { Grados: Grados });
-});
+router.get("/bomberoAdd", vistaNuevoBombero);
 
-router.get("/editarBomberos/:id", async (req, res) => {
-  const bombero = await Bomberos.findById(req.params.id).lean();
- console.log(bombero);
-  res.render("bomberos/bomberoEditar", {bombero, Estados});
-});
+router.get("/editarBomberos/:id", vistaEditarBombero);
 
-router.post("/bomberos/editBombero/:id", async (req,res)=>{
-  const {nombre,apellido,dni,nOrden,rango,estado,despachador} = req.body;
-  await Bomberos.findByIdAndUpdate(req.params.id, {nombre,apellido,dni,nOrden,rango,estado,despachador});
-  console.log(req.body);
-  res.redirect("/Bomberos");
-})
+router.post("/bomberos/editBombero/:id", editarBombero);
 
 
 export default router;

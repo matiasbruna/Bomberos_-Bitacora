@@ -1,23 +1,17 @@
 //Rutas Unidades
 import { Router } from "express";
-import Unidades from "../models/Unidades";
+
+import { guardarUnidad, mostrarUnidades, vistaCargarUnidad, editarUnidad, mostrarUnidadEditar} from "../controllers/unidades.controller";
 const router = Router();
 
-router.get("/unidades", async (req, res) => {
-  const unidad = await Unidades.find().lean();
-  console.log(unidad);
+router.get("/unidades", mostrarUnidades);
 
-  res.render("unidades/unidades", { unidad: unidad });
-});
+router.get("/unidadesAdd", vistaCargarUnidad);
 
-router.get("/unidadesAdd", (req, res) => {
-  res.render("unidades/unidadesAdd");
-});
+router.post("/unidades/agregar", guardarUnidad);
 
-router.post("/unidades/agregar", async (req, res) => {
-  const unidades = Unidades(req.body);
-  await unidades.save();
-  res.redirect("unidades/unidades");
-});
+router.post("/unidades/editUnidad/:id" , editarUnidad);
+
+router.get("/unidades/vistaEditarUnidad/:id", mostrarUnidadEditar);
 
 export default router;

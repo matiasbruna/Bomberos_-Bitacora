@@ -8,5 +8,20 @@
   },
   "keywords": [],
   "author": "Bruna Matias",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "moment": "^2.29.4",
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.22.1",
+    "@babel/node": "^7.22.1",
+    "@babel/preset-env": "^7.22.2",
+    "connect-flash": "^0.1.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "mongoose": "^7.2.1",
+    "morgan": "^1.10.0"
+  }
 }

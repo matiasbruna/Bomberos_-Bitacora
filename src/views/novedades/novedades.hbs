@@ -1,36 +1,33 @@
-<div class="container text-white mt-4">
+<div class="container mt-4">
     <h1>Listado de Novedades</h1>
-
     </br>
-
     <div>
         <a href="/novedadesAdd" class="btn btn-primary">Agregar nueva Novedad</a>
     </div>
     </br>
 
-
-  <table class="table table-bordered table-hover table-dark">
-    <thead>
-      <tr>
-        <th>Num</th>
-        <th>Bombero</th>
-        <th>Derscripcion</th>
-        <th>Fecha</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each novedad}}
+  <div class="table-responsive">
+    <table class="table  table-hover table-sm table-light">
+      <thead>
         <tr>
-          <td>{{@index}}</td>
-          <td>{{this.bombero}}</td>
-          <td>{{this.descripcion}}</td>
-          <td>{{this.createdAt}}</td>
-          <td>
-            <a href="/edit/{{_id}}" class="btn btn-info">Modificar </a>
-            <a href="/borrar/{{_id}}" class="btn btn-danger">Borrar</a>
-          </td>       
+          <th>Num</th>
+          <th>Despachador</th>
+          <th>Fecha</th>
+          <th>Accion</th>
         </tr>
-      {{/each}}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {{#each novedad}}
+          <tr>
+            <td>{{@index}}</td>
+            <td>{{this.bombero}}</td>
+            <td>{{this.createdAt}}</td> 
+            <td>
+             <a href="/novedades/ver/{{this._id}}" class="btn btn-info" >Ver</a>
+            </td>   
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>

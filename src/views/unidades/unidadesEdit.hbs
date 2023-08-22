@@ -1,36 +1,36 @@
 <div class="col-md-4 mx-auto">
   <div class="card">
     <div class="card-header text-center">
-      <h3>Agregar Nueva Unidad</h3>
+      <h3>Editar Unidad</h3>
     </div>
     <div class="card-body">
-      <form action="/unidades/agregar" method="POST">
+      <form action="/unidades/editUnidad/{{unidad._id}}" method="POST">
           <div class="mb-3">
             <label for="numero">Ingrese el Numero:</label>
             <br />
-            <input  type="text" name="numero" placeholder="Numero" class="form-control" value="{{numero}}"  id="numero"/>
+            <input  type="text" name="numero" placeholder="Numero" class="form-control" value="{{unidad.numero}}"  id="numero"/>
           </div>
 
           <div class="mb-3">
             <label for="marca">Marca:</label>
             <br />
-            <input type="text"  name="marca" placeholder="Marca" class="form-control" value="{{marca}}" id="marca" />
+            <input type="text"  name="marca" placeholder="Marca" class="form-control" value="{{unidad.marca}}" id="marca" />
           </div>
 
           <div class="mb-3">
             <label for="propocito">Propocito:</label>
             <br />
-            <input type="text"  name="propocito" placeholder="Propocito" class="form-control" value="{{propocito}}" id="propocito" />
+            <input type="text"  name="propocito" placeholder="Propocito" class="form-control" value="{{unidad.propocito}}" id="propocito" />
           </div>
 
           <div class="mb-3">
             <label for="km">KM:</label>
             <br />
-            <input type="text" name="km" placeholder="km" class="form-control" value="{{km}}" id="km" />
+            <input type="text" name="km" placeholder="km" class="form-control" value="{{unidad.km}}" id="km" />
           </div>
 
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="submit">Agregar</button>
+            <button class="btn btn-primary" type="submit">Editar</button>
 
             <a href="/unidades" class="btn btn-primary">Volver</a>
           </div>
