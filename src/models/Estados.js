@@ -4,7 +4,7 @@ const Estados = [
     {estado:"Baja"},
     {estado:"Situacion Especial"},
     {estado:"Cuerpo Auxiliar"},
-    {estado:"Retirio Efectivo"},
+    {estado:"Retiro Efectivo"},
     {estado:"Fallecido"},
     {estado:"Suspendido"},
 ];
