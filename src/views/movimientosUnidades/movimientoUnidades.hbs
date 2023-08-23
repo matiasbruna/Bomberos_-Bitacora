@@ -45,8 +45,8 @@
       </div>
     {{/if}}
   </br>
-  {{#if movimientoTerminado}}
-    <h2>Movimientos Finalizados:</h2>
+  {{#if movimientosTerminado}}
+    <h2>Movimientos Finalizados el dia de hoy:</h2>
     <div class="table-responsive">
       <table class="table table-hover table-sm table-light">
         <thead>
@@ -60,7 +60,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each movimientoTerminado}}
+          {{#each movimientosTerminado}}
             <tr>
               <td>{{this.unidad}}</td>
               <td>{{this.chofer}}</td>

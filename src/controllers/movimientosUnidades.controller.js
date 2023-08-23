@@ -3,25 +3,27 @@ import Bomberos from "../models/Bomberos";
 import Unidades from "../models/Unidades";
 import {User,Admin} from "../models/auth";
 import { errors, reiniciarErrors} from "../models/Errors";
+import { now } from "mongoose";
 
 export const mostrarMovimeintosUnidad =  async (req, res) => {
     try{
+       
+        
         const movimiento = await Movimientos.find({finalizo: false}).sort({_id: -1}).lean();
         movimiento.forEach((movimiento) => {
             movimiento.fechaInicioFormatted = movimiento.fechaInicio.toLocaleDateString();
         });
+        
 
-        const movimientoTerminado = await Movimientos.find({finalizo: true}).sort({_id: -1}).lean();
-        movimientoTerminado.forEach((movimientoTerminado) => {
-            movimientoTerminado.fechaInicioFormatted = movimientoTerminado.fechaInicio.toLocaleDateString();
-            movimientoTerminado.fechaFinalFormatted = movimientoTerminado.fechaFinal.toLocaleDateString();
-        });
+        const  movimientosTerminado = await movimientoTerminado();
 
+        
         res.render("movimientosUnidades/movimientoUnidades", {
-            movimiento: movimiento,
             User,
             Admin,
-            movimientoTerminado});
+            movimiento: movimiento,
+            movimientosTerminado
+        });
     }
     catch(error){
         console.error(error);
@@ -119,17 +121,13 @@ export const terminarMovimientoUnidad = async (req, res) => {
                     movimiento.fechaInicioFormatted = movimiento.fechaInicio.toLocaleDateString();
                 });
         
-                const movimientoTerminado = await Movimientos.find({finalizo: true}).sort({_id: -1}).lean();
-                movimientoTerminado.forEach((movimientoTerminado) => {
-                    movimientoTerminado.fechaInicioFormatted = movimientoTerminado.fechaInicio.toLocaleDateString();
-                    movimientoTerminado.fechaFinalFormatted = movimientoTerminado.fechaFinal.toLocaleDateString();
-                });
+                const  movimientosTerminado = await movimientoTerminado();
         
                 res.render("movimientosUnidades/movimientoUnidades", {
                     movimiento: movimiento,
                     User,
                     Admin,
-                    movimientoTerminado,
+                    movimientosTerminado,
                     errors
                 });
             }
@@ -160,6 +158,25 @@ export const terminarMovimientoUnidad = async (req, res) => {
 async function GuardarKm (numeroUnidad, KM){
     
     
+}
+
+async function movimientoTerminado  () {
+    const now = new Date();  // Obtén la fecha y hora actuales
+    now.setHours(0, 0, 0, 0);  // Ajusta la hora para comparar solo las fechas
+
+    const movimientoTerminado = await Movimientos.find({
+        finalizo: true, 
+        fechaFinal: {      ////con esta linea de codigo solo traigo los movimientos que tengan la misma fecha que hoy
+            $gte: now,
+            $lt: new Date(now.getTime() + 24 * 60 * 60 * 1000)
+        }
+    }).sort({_id: -1}).lean();
+    movimientoTerminado.forEach((movimientoTerminado) => {
+        movimientoTerminado.fechaInicioFormatted = movimientoTerminado.fechaInicio.toLocaleDateString();
+        movimientoTerminado.fechaFinalFormatted = movimientoTerminado.fechaFinal.toLocaleDateString();
+    });
+
+    return movimientoTerminado;
 }
 
 
