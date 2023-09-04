@@ -2,3 +2,5 @@ node_modules
 cuenta.txt
 .env
 dist
+dump
+dumpBD.js
