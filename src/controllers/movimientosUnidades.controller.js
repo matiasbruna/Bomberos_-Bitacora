@@ -8,10 +8,17 @@ import { now } from "mongoose";
 export const mostrarMovimeintosUnidad =  async (req, res) => {
     try{
        
-        
+        const unidad = await Unidades.find().lean();
         const movimiento = await Movimientos.find({finalizo: false}).sort({_id: -1}).lean();
+        
+        
         movimiento.forEach((movimiento) => {
             movimiento.fechaInicioFormatted = movimiento.fechaInicio.toLocaleDateString();
+            unidad.forEach((unidad)=>{
+                if (movimiento.unidad == unidad.numero){
+                    movimiento.kmAnterior = unidad.km
+                }
+            });
         });
         
 
@@ -116,9 +123,15 @@ export const terminarMovimientoUnidad = async (req, res) => {
         }
         if(errors.length > 0){
             try{
+                const unidad = await Unidades.find().lean();
                 const movimiento = await Movimientos.find({finalizo: false}).sort({_id: -1}).lean();
                 movimiento.forEach((movimiento) => {
                     movimiento.fechaInicioFormatted = movimiento.fechaInicio.toLocaleDateString();
+                    unidad.forEach((unidad)=>{
+                        if (movimiento.unidad == unidad.numero){
+                            movimiento.kmAnterior = unidad.km
+                        }
+                    });
                 });
         
                 const  movimientosTerminado = await movimientoTerminado();

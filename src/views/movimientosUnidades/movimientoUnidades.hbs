@@ -13,6 +13,7 @@
             <tr>
               <th>Unidad</th>
               <th>Finalizar</th>
+              <th>KM Anterior</th>
               <th>KM</th>
               <th>Fecha Regreso</th>
               <th>Chofer</th>
@@ -29,7 +30,8 @@
                   <td>{{this.unidad}}</td>
                   <td>
                     <button type="submit" class="btn btn-info">Finalizar</button>
-                  </td>
+                  </td>            
+                  <td>{{this.kmAnterior}}</td>               
                   <td><input type="text" name="km" placeholder="Agregar KM"></td>
                   <td><input type="datetime-local" name="fechaFinal"></td>
                   <td>{{this.chofer}}</td>
