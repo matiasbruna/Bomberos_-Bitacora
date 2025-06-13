@@ -53,7 +53,7 @@ export const mostrarMovimientoId = async (req, res) => {
 export const cargarMovimientoUnidad = async (req, res) => {
     reiniciarErrors();
     const bombero = await Bomberos.find({ estado: "Activo" }).sort({ apellido: 1 }).lean(); // Solo activos y ordenados por Apellido
-    const unidad = await Unidades.find().lean();
+    const unidad = await Unidades.find().sort({numero: 1}).lean(); // Ordena por numero de unidad 
   
     res.render("movimientosUnidades/movimientosAdd", { unidad: unidad, bombero: bombero, User,Admin });
 };
