@@ -16,7 +16,7 @@
             <div class="mb-3">
                 <label for="autorizo">Autorizo:</label>
                 <select class="form-select" name="autorizo" id="autorizo">
-                    {{#each bombero}}
+                    {{#each graduados}}
                         <option value="{{this.apellido}},{{this.nombre}}">{{this.apellido}},{{this.nombre}} </option>
                     {{/each}}
                 </select>

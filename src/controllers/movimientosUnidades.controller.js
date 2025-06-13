@@ -1,6 +1,7 @@
 import Movimientos from "../models/Movimientos";
 import Bomberos from "../models/Bomberos";
 import Unidades from "../models/Unidades";
+import Grados from "../models/Grados";
 import {User,Admin} from "../models/auth";
 import { errors, reiniciarErrors} from "../models/Errors";
 import { now } from "mongoose";
@@ -54,8 +55,22 @@ export const cargarMovimientoUnidad = async (req, res) => {
     reiniciarErrors();
     const bombero = await Bomberos.find({ estado: "Activo" }).sort({ apellido: 1 }).lean(); // Solo activos y ordenados por Apellido
     const unidad = await Unidades.find().sort({numero: 1}).lean(); // Ordena por numero de unidad 
-  
-    res.render("movimientosUnidades/movimientosAdd", { unidad: unidad, bombero: bombero, User,Admin });
+    const grados = Grados;
+
+   // Obtener nombres de grados del 1 al 16
+    const nombresGrados = grados.filter(g => g.numero >= 1 && g.numero <= 16).map(g => g.nombre);
+
+    // Filtrar bomberos cuyo rango esté dentro de esos grados
+    const graduados = bombero.filter(b => nombresGrados.includes(b.rango));
+
+
+    res.render("movimientosUnidades/movimientosAdd", { 
+        unidad: unidad,
+        bombero: bombero,
+        graduados: graduados,
+        User,
+        Admin 
+    });
 };
 
 export const guardarMovimientoUnidad = async (req, res) => {
