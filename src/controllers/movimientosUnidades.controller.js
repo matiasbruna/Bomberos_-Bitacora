@@ -52,7 +52,7 @@ export const mostrarMovimientoId = async (req, res) => {
 
 export const cargarMovimientoUnidad = async (req, res) => {
     reiniciarErrors();
-    const bombero = await Bomberos.find().lean();
+    const bombero = await Bomberos.find({ estado: "Activo" }).sort({ apellido: 1 }).lean(); // Solo activos y ordenados por Apellido
     const unidad = await Unidades.find().lean();
   
     res.render("movimientosUnidades/movimientosAdd", { unidad: unidad, bombero: bombero, User,Admin });
@@ -82,7 +82,7 @@ export const guardarMovimientoUnidad = async (req, res) => {
 
         if (errors.length > 0){
 
-            const bombero = await Bomberos.find().lean();
+            const bombero = await Bomberos.find({ estado: "Activo" }).sort({ apellido: 1 }).lean(); // Solo activos y ordenados por Apellido
             const unidad = await Unidades.find().lean();
   
             res.render("movimientosUnidades/movimientosAdd", { unidad: unidad, bombero: bombero, User,Admin,errors });

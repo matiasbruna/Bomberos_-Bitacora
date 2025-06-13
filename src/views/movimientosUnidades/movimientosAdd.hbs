@@ -17,7 +17,7 @@
                 <label for="autorizo">Autorizo:</label>
                 <select class="form-select" name="autorizo" id="autorizo">
                     {{#each bombero}}
-                        <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                        <option value="{{this.apellido}},{{this.nombre}}">{{this.apellido}},{{this.nombre}} </option>
                     {{/each}}
                 </select>
             </div>  
@@ -25,7 +25,7 @@
                 <label for="chofer">Chofer:</label>
                 <select class="form-select" name="chofer" id="chofer">
                     {{#each bombero}}
-                        <option value="{{this.nombre}}, {{this.apellido}}">{{this.nombre}}, {{this.apellido}}</option>
+                        <option value="{{this.apellido}},{{this.nombre}}"> {{this.apellido}},{{this.nombre}} </option>
                     {{/each}}
                 </select>
             </div> 
