@@ -5,7 +5,7 @@ import  {errors, reiniciarErrors } from "../models/Errors";
 export const mostrarLogin = async (req, res) => {
     reiniciarErrors();
     //buca solo los que en la propiedad despachador tengan true
-    const bombero = await Bomberos.find({ despachador: true }).lean();
+    const bombero = await Bomberos.find({ despachador: true }).sort({apellido: 1}).lean();
     res.render("users/login", { bombero });
 };
 
