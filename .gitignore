@@ -4,3 +4,4 @@ cuenta.txt
 dist
 dump
 dumpBD.js
+scripts/backup
