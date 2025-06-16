@@ -38,7 +38,16 @@ const bomberosSchema = new Schema(
     admin:{
       type: Boolean,
       default: false, 
-    }
+    },
+    chofer: {
+      type: Boolean,
+      default: false,
+    },
+    unidadesHabilitadas: [{
+    type: Schema.Types.ObjectId,
+    ref: "Unidades"
+    }]
+    
   },
   {
     timestamps: true,
