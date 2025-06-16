@@ -5,7 +5,7 @@ import mg from "mongoose";
   try {
     mg.set("strictQuery", false);
     const db = await connect("mongodb://127.0.0.1:27017/test");
-    console.log("BD conectada con", db.connection.name);
+    console.log("BD conectada con", db.connection.name, "Local");
   } catch (error) {
     console.error(error);
   }
