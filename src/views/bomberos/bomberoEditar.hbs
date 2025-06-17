@@ -6,110 +6,115 @@
     <div class="card-body">
 
       <form action="/bomberos/editBombero/{{_id}}" method="POST">
-         <div class="mb-3 d-none">
-          <label for="title">Id:</label>
-          <input
-            type="text"
-            name="_id"
-            class="form-control"
-            value="{{_id}}"
-          />
-        </div>
+        <input type="hidden" name="_id" value="{{_id}}" />
+
         <div class="mb-3">
-          <label for="title">Nombre:</label>
-          <input
-            type="text"
-            name="nombre"
-            class="form-control"
-            value="{{nombre}}"
-          />
+          <label for="nombre">Nombre:</label>
+          <input type="text" name="nombre" class="form-control" value="{{nombre}}" />
         </div>
+
         <div class="mb-3">
-          <label for="title">Apellido:</label>
-          <input
-            type="text"
-            name="apellido"
-            class="form-control"
-            value="{{apellido}}"
-          />
+          <label for="apellido">Apellido:</label>
+          <input type="text" name="apellido" class="form-control" value="{{apellido}}" />
         </div>
+
         <div class="mb-3">
-          <label for="title">Dni:</label>
-          <input
-            type="text"
-            name="dni"
-            class="form-control"
-            value="{{dni}}"
-          />
+          <label for="dni">DNI:</label>
+          <input type="text" name="dni" class="form-control" value="{{dni}}" />
         </div>
+
         <div class="mb-3">
-          <label for="title">Numero de Orden:</label>
-          <input
-            type="text"
-            name="nOrden"
-            class="form-control"
-            value="{{nOrden}}"
-          />
+          <label for="nOrden">Número de Orden:</label>
+          <input type="text" name="nOrden" class="form-control" value="{{nOrden}}" />
         </div>
+
         <div class="mb-3">
-          <label for="title">Rango Actual:</label>
-          <input
-            type="text"
-            class="form-control"
-            value="{{rango}}"
-          />
+          <label for="rango">Rango Actual:</label>
+          <input type="text" class="form-control" value="{{rango}}" disabled />
         </div>
+
         <div class="mb-3">
-          <label for="title">Rango Nuevo:</label>
-          <br>
+          <label for="rangoNuevo">Rango Nuevo:</label>
           <select class="form-select" name="rango">
             {{#each Grados}}
-            <option value="{{this.nombre}}">{{this.nombre}}</option>
+              <option value="{{this.nombre}}" {{#ifEquals this.nombre ../rango}}selected{{/ifEquals}}>{{this.nombre}}</option>
             {{/each}}
-          </select>   
+          </select>
         </div>
+
         <div class="mb-3">
-          <label for="title">Estado:</label>
-          <br>
+          <label for="estado">Estado:</label>
           <select class="form-select" name="estado">
             {{#each Estados}}
-            <option value="{{this.estado}}">{{this.estado}}</option>
+              <option value="{{this.estado}}" {{#ifEquals this.estado ../estado}}selected{{/ifEquals}}>{{this.estado}}</option>
             {{/each}}
-          </select>   
+          </select>
+        </div>
+        <div class="mb-3 form-check">
+          <input type="hidden" name="despachador" value="false" />
+          <input type="checkbox" class="form-check-input" id="despachador" name="despachador" value="true" {{#if despachador}}checked{{/if}}>
+          <label class="form-check-label" for="despachador">Despachador</label>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="hidden" name="admin" value="false" />
+          <input type="checkbox" class="form-check-input" id="admin" name="admin" value="true" {{#if admin}}checked{{/if}}>
+          <label class="form-check-label" for="admin">Administrador</label>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="hidden" name="chofer" value="false" />
+          <input type="checkbox" class="form-check-input" id="chofer" name="chofer" value="true" {{#if chofer}}checked{{/if}}>
+          <label class="form-check-label" for="chofer">Chofer</label>
         </div>
 
         <div class="mb-3">
-          <label>
-              <input 
-              type="checkbox" 
-              name="despachador"
-              value="true"
-                {{#if despachador}}
-                checked
-                {{/if}}
-              >
-                Despachador.
-          </label>  
-        </div>  
-        <div class="mb-3">
-          <label>
-              <input 
-                type="checkbox" 
-                name="admin"
-                value="true"
-                {{#if admin}}
-                checked
-                {{/if}}
-              >  Administrador.
-          </label>         
-        </div>  
-        <div class="d-grid gap-2">
+          <label class="form-label">Unidades Habilitadas:</label>
+          <div>
 
-            <button class="btn btn-primary" type="submit">Guardar</button>
-
-            <a href="/Bomberos" class="btn btn-primary">Volver</a>
+            {{#each unidades}}
+              <div class="form-check form-check-inline">
+                <input
+                type="checkbox"
+                class="form-check-input"
+                id="unidad-{{this.numero}}"
+                name="unidadesHabilitadas"
+                value="{{this.numero}}"
+                {{isChecked ../unidadesHabilitadas this.numero}}>
+                  <label class="form-check-label" for="unidad-{{this.numero}}">
+                  {{this.numero}} - ({{this.propocito}})
+                  </label>
+              </div>
+            {{/each}}
           </div>
+        </div>
+
+        {{#if errors.length}}
+        <div class="alert alert-danger">
+          <ul>
+            {{#each errors}}
+              <li>{{this.text}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        {{/if}}
+
+        {{#if errors.length}}
+        <div class="alert alert-danger">
+          <ul>
+            {{#each errors}}
+              <li>{{this.text}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        {{/if}}
+
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary" type="submit">Guardar</button>
+          <a href="/bomberos" class="btn btn-secondary">Volver</a>
+        </div>
       </form>
+
     </div>
   </div>
 </div>

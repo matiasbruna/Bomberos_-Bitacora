@@ -10,25 +10,21 @@
             <br />
             <input  type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{nombre}}"  id="nombre"/>
           </div>
-
           <div class="mb-3">
             <label for="apellido">Ingrese el apellido:</label>
             <br />
             <input type="text"  name="apellido" placeholder="Apellido" class="form-control" value="{{apellido}}" id="apellido" />
           </div>
-
           <div class="mb-3">
             <label for="dni">DNI:</label>
             <br />
             <input type="text"  name="dni" placeholder="DNI" class="form-control" value="{{dni}}" id="dni" />
           </div>
-
           <div class="mb-3">
             <label for="nOrden">Numero de orden:</label>
             <br />
             <input type="text" name="nOrden" placeholder="N de Orden" class="form-control" value="{{nOrden}}" id="nOrden" />
           </div>
-
           <div class="mb-3">
             <label for="rango">Rango:</label>
             <br />
@@ -38,7 +34,6 @@
               {{/each}}
             </select>
           </div>
-
           <div class="mb-3">
             <label for="title">Estado:</label>
             <select class="form-select" name="estado">
@@ -47,7 +42,6 @@
               {{/each}}
             </select>   
           </div>
-
           <div class="mb-3">
             <label>
                 <input 
@@ -66,7 +60,41 @@
               >   Administrador.      
             </label>  
           </div>  
-          <br />
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="chofer" name="chofer" value="true" {{#if chofer}}checked{{/if}}>
+            <label class="form-check-label" for="chofer">Chofer</label>
+          </div>
+          <div class="mb-3">
+          <label class="form-label">Unidades Habilitadas:</label>
+          <div>
+            {{#each unidades}}
+              <div class="form-check form-check-inline">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="unidad-{{this._id}}"
+                  name="unidadesHabilitadas[]"
+                  value="{{this.numero}}"
+                  {{#contains this._id ../unidadesHabilitadas}}checked{{/contains}}
+                >
+                <label class="form-check-label" for="unidad-{{this._id}}">
+                  {{this.numero}} -({{this.propocito}})
+                </label>
+              </div>
+            {{/each}}
+          </div>
+          </div>
+
+        {{#if errors.length}}
+          <div class="alert alert-danger">
+            <ul>
+            {{#each errors}}
+              <li>{{this.text}}</li>
+            {{/each}}
+            </ul>
+          </div>
+        {{/if}}
+        <br />
           <div class="d-grid gap-2">
 
             <button class="btn btn-primary" type="submit">Agregar</button>

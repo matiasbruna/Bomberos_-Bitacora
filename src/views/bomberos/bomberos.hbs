@@ -13,24 +13,24 @@
               <th>Apellido</th>
               <th>Nombre</th>
               <th>Grado</th>
-              <th>Dni</th>
               <th>Estado</th>
               <th>Despachador</th>
               <th>Administrador</th>
+              <th>Chofer</th>
               <th>Accion</th>
             </tr>
           </thead>
           <tbody>
-            {{#each TodosBomberos}}
+            {{#each todosBomberos}}
               <tr>
                 <td>{{this.nOrden}}</td>
                 <td>{{this.apellido}}</td>
                 <td>{{this.nombre}}</td>
                 <td>{{this.rango}}</td>
-                <td>{{this.dni}}</td>
                 <td>{{this.estado}}</td>
                 <td>{{this.despachador}}</td>
-                <td>{{this.admin}}</td>         
+                <td>{{this.admin}}</td>     
+                <td>{{this.chofer}}</td>    
                 <td>
                   <a href="/editarBomberos/{{_id}}" class="btn btn-info">Modificar </a>
                 </td>       

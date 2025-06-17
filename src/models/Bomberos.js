@@ -44,8 +44,8 @@ const bomberosSchema = new Schema(
       default: false,
     },
     unidadesHabilitadas: [{
-    type: Schema.Types.ObjectId,
-    ref: "Unidades"
+     type: Number,
+     required: false
     }]
     
   },
