@@ -46,7 +46,15 @@ const bomberosSchema = new Schema(
     unidadesHabilitadas: [{
      type: Number,
      required: false
-    }]
+    }],
+      SuperiorDeTurno: {
+      type: Boolean,
+      default: false,
+    },
+      GuardiaEspecial: {
+      type: Boolean,
+      default: false,
+    },
     
   },
   {
