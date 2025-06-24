@@ -4,7 +4,7 @@ import { errors, reiniciarErrors } from "../../models/Errors";
 import { User } from "../../models/auth";
 import { obtenerUnidadesDisponibles } from "./_helpers";
 import Grados from "../../models/Grados";
-import Estados  from "../../models/Estados";
+import Estados from "../../models/Estados";
 
 // Vista para editar bombero: cargar unidades libres + ya asignadas al editar
 export const vistaEditarBombero = async (req, res) => {
@@ -15,7 +15,9 @@ export const vistaEditarBombero = async (req, res) => {
   const unidadesAsignadas = await Unidades.find({ numero: { $in: actuales } }).lean();
   const unidades = [
     ...unidadesDisponibles,
-    ...unidadesAsignadas.filter(u => !unidadesDisponibles.some(d => d._id.toString() === u._id.toString()))
+    ...unidadesAsignadas.filter(
+      (u) => !unidadesDisponibles.some((d) => d._id.toString() === u._id.toString())
+    ),
   ];
   res.render("bomberos/bomberoEditar", { Grados, Estados, unidades, User, errors: [], ...bombero });
 };
@@ -25,31 +27,53 @@ export const editarBombero = async (req, res) => {
   reiniciarErrors();
   const datos = req.body;
   console.log(req.body);
-  const { _id, nombre, apellido, dni, nOrden, rango, estado, despachador, admin, chofer, unidadesHabilitadas } = datos;
+  const {
+    _id,
+    nombre,
+    apellido,
+    dni,
+    nOrden,
+    rango,
+    estado,
+    despachador,
+    admin,
+    chofer,
+    unidadesHabilitadas,
+    SuperiorDeTurno,
+    GuardiaEspecial,
+  } = datos;
 
-const esDespachador = Array.isArray(despachador)
-  ? despachador.includes('true')
-  : despachador === 'true';
+  const esDespachador = Array.isArray(despachador)
+    ? despachador.includes("true")
+    : despachador === "true";
 
-const esAdmin = Array.isArray(admin)
-  ? admin.includes('true')
-  : admin === 'true';
+  const esAdmin = Array.isArray(admin)
+    ? admin.includes("true")
+    : admin === "true";
 
-const esChofer = Array.isArray(chofer)
-  ? chofer.includes('true')
-  : chofer === 'true';
+  const esChofer = Array.isArray(chofer)
+    ? chofer.includes("true")
+    : chofer === "true";
+
+  const esSuperiorDeTurno = Array.isArray(SuperiorDeTurno)
+    ? SuperiorDeTurno.includes("true")
+    : SuperiorDeTurno === "true";
+
+  const esGuardiaEspecial = Array.isArray(GuardiaEspecial)
+    ? GuardiaEspecial.includes("true")
+    : GuardiaEspecial === "true";
 
   // Validaciones
-  if (!nombre) errors.push({ text: 'Debes ingresar un Nombre.' });
-  if (!apellido) errors.push({ text: 'Debes ingresar un Apellido.' });
-  if (!nOrden) errors.push({ text: 'Debes ingresar un Número de Orden.' });
-  if (!dni) errors.push({ text: 'Debes ingresar un DNI.' });
+  if (!nombre) errors.push({ text: "Debes ingresar un Nombre." });
+  if (!apellido) errors.push({ text: "Debes ingresar un Apellido." });
+  if (!nOrden) errors.push({ text: "Debes ingresar un Número de Orden." });
+  if (!dni) errors.push({ text: "Debes ingresar un DNI." });
 
   if (esChofer) {
     let unidades = unidadesHabilitadas || [];
     if (!Array.isArray(unidades)) unidades = [unidades];
     if (unidades.length === 0) {
-      errors.push({ text: 'Seleccioná al menos una unidad para el chofer.' });
+      errors.push({ text: "Seleccioná al menos una unidad para el chofer." });
     }
   }
 
@@ -60,10 +84,21 @@ const esChofer = Array.isArray(chofer)
     const unidadesAsignadas = await Unidades.find({ numero: { $in: actuales } }).lean();
     const unidades = [
       ...unidadesDisponibles,
-      ...unidadesAsignadas.filter(u => !unidadesDisponibles.some(d => d._id.toString() === u._id.toString()))
+      ...unidadesAsignadas.filter(
+        (u) => !unidadesDisponibles.some((d) => d._id.toString() === u._id.toString())
+      ),
     ];
 
-    return res.render("bomberos/bomberoEditar", { Grados, Estados, unidades, User, errors, ...datos });
+    return res.render("bomberos/bomberoEditar", {
+      Grados,
+      Estados,
+      unidades,
+      User,
+      errors,
+      ...datos,
+      SuperiorDeTurno: esSuperiorDeTurno,
+      GuardiaEspecial: esGuardiaEspecial,
+    });
   }
 
   // Preparar datos para actualizar
@@ -77,13 +112,17 @@ const esChofer = Array.isArray(chofer)
     despachador: esDespachador,
     admin: esAdmin,
     chofer: esChofer,
+    SuperiorDeTurno: esSuperiorDeTurno,
+    GuardiaEspecial: esGuardiaEspecial,
   };
 
   // Solo asignar unidades habilitadas si es chofer, sino vaciar
   if (esChofer) {
     updateData.unidadesHabilitadas = Array.isArray(unidadesHabilitadas)
       ? unidadesHabilitadas
-      : unidadesHabilitadas ? [unidadesHabilitadas] : [];
+      : unidadesHabilitadas
+      ? [unidadesHabilitadas]
+      : [];
   } else {
     updateData.unidadesHabilitadas = [];
   }
