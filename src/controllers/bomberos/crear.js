@@ -40,17 +40,19 @@ export async function cargarNuevoBombero(req, res) {
   unidades = unidades.map((n) => Number(n));
 
   // Crear y guardar nuevo bombero
-  const nuevoBombero = new Bomberos({
-    nombre: datos.nombre,
-    apellido: datos.apellido,
-    dni: datos.dni,
-    nOrden: datos.nOrden,
-    rango: datos.rango,
-    estado: datos.estado,
-    despachador: datos.despachador === "true",
-    admin: datos.admin === "true",
-    chofer: datos.chofer === "true",
-    unidadesHabilitadas: unidades,
+ const nuevoBombero = new Bomberos({
+  nombre: datos.nombre,
+  apellido: datos.apellido,
+  dni: datos.dni,
+  nOrden: datos.nOrden,
+  rango: datos.rango,
+  estado: datos.estado,
+  despachador: datos.despachador === "true",
+  admin: datos.admin === "true",
+  chofer: datos.chofer === "true",
+  unidadesHabilitadas: unidades,
+  SuperiorDeTurno: datos.SuperiorDeTurno === "true",
+  GuardiaEspecial: datos.GuardiaEspecial === "true",
   });
 
   try {
