@@ -63,6 +63,18 @@
         </div>
 
         <div class="mb-3 form-check">
+          <input type="hidden" name="SuperiorDeTurno" value="false" />
+          <input type="checkbox" class="form-check-input" id="SuperiorDeTurno" name="SuperiorDeTurno" value="true" {{#if SuperiorDeTurno}}checked{{/if}}>
+          <label class="form-check-label" for="SuperiorDeTurno">Superior de Turno</label>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="hidden" name="GuardiaEspecial" value="false" />
+          <input type="checkbox" class="form-check-input" id="GuardiaEspecial" name="GuardiaEspecial" value="true" {{#if GuardiaEspecial}}checked{{/if}}>
+          <label class="form-check-label" for="GuardiaEspecial">Guardia Especial</label>
+        </div>
+
+        <div class="mb-3 form-check">
           <input type="hidden" name="chofer" value="false" />
           <input type="checkbox" class="form-check-input" id="chofer" name="chofer" value="true" {{#if chofer}}checked{{/if}}>
           <label class="form-check-label" for="chofer">Chofer</label>
