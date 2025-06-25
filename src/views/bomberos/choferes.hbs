@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Listado de Choferes</h1>
+  </br>
+  <div>
+    <a href="/bomberos" class="btn btn-secondary">Volver al Listado General</a>
+  </div>
+  </br>
+  <div class="table-responsive">
+    <table class="table table-hover table-sm table-light">
+      <thead>
+        <tr>
+          <th>Num</th>
+          <th>Apellido</th>
+          <th>Nombre</th>
+          <th>Unidades Habilitadas</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each todosBomberos}}
+          <tr>
+            <td>{{nOrden}}</td>
+            <td>{{apellido}}</td>
+            <td>{{nombre}}</td>
+            <td>
+              {{#each unidadesHabilitadas}}
+                <span class="badge bg-success">{{this}}</span>
+              {{/each}}
+            </td>
+            <td>
+              <a href="/editarBomberos/{{_id}}" class="btn btn-info btn-sm">Modificar</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
