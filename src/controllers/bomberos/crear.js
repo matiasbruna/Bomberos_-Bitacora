@@ -1,5 +1,5 @@
 import { errors, reiniciarErrors } from "../../models/Errors";
-import { User } from "../../models/auth";
+import { User, Admin } from "../../models/auth";
 import Grados from "../../models/Grados";
 import Estados from "../../models/Estados";
 import Bomberos from "../../models/Bomberos";
@@ -27,6 +27,7 @@ export async function cargarNuevoBombero(req, res) {
       Estados,
       unidades,
       User,
+      Admin,
       errors,
       ...datos,
     });
@@ -67,6 +68,7 @@ export async function cargarNuevoBombero(req, res) {
       Estados,
       unidades: unidadesDisponibles,
       User,
+      Admin,
       errors,
       ...datos,
     });

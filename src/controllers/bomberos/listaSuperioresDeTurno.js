@@ -1,5 +1,5 @@
 import Bomberos from "../../models/Bomberos";
-import { User } from "../../models/auth";
+import { User , Admin } from "../../models/auth";
 
 // Muestra solo los bomberos que pueden ser Superiores de Turno
 export async function mostrarSuperioresDeTurno(req, res) {
@@ -7,5 +7,5 @@ export async function mostrarSuperioresDeTurno(req, res) {
     .sort({ nOrden: 1 })
     .lean();
     
-  res.render("bomberos/superioresDeTurno", { todosBomberos, User });
+  res.render("bomberos/superioresDeTurno", { todosBomberos, User, Admin });
 }

@@ -1,7 +1,7 @@
 import Bomberos from "../../models/Bomberos";
 import Unidades from "../../models/Unidades";
 import { errors, reiniciarErrors } from "../../models/Errors";
-import { User } from "../../models/auth";
+import { User, Admin } from "../../models/auth";
 import { obtenerUnidadesDisponibles } from "./_helpers";
 import Grados from "../../models/Grados";
 import Estados from "../../models/Estados";
@@ -19,7 +19,7 @@ export const vistaEditarBombero = async (req, res) => {
       (u) => !unidadesDisponibles.some((d) => d._id.toString() === u._id.toString())
     ),
   ];
-  res.render("bomberos/bomberoEditar", { Grados, Estados, unidades, User, errors: [], ...bombero });
+  res.render("bomberos/bomberoEditar", { Grados, Estados, unidades, User, Admin, errors: [], ...bombero });
 };
 
 // Editar bombero y sus unidades habilitadas
@@ -94,6 +94,7 @@ export const editarBombero = async (req, res) => {
       Estados,
       unidades,
       User,
+      Admin,
       errors,
       ...datos,
       SuperiorDeTurno: esSuperiorDeTurno,

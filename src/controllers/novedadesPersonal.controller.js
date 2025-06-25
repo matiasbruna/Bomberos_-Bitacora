@@ -11,13 +11,13 @@ export const mostrarNovedades = async (req,res)=>{
     hoy.setHours(0, 0, 0, 0); // Establecer las horas, minutos, segundos y milisegundos a cero
     const novedadPersonal = await NovedadesPersonal.find({finalizo: true, fechaFinal: {$gte: hoy}}).sort({ fechaInicio: -1 }).lean();
     const novedadPersonalPendiente = await NovedadesPersonal.find({finalizo:false}).sort({ fechaInicio: -1 }).lean();
-    res.render("novedadesPersonal/novedadesPersonal",{novedadPersonal,novedadPersonalPendiente,User})
+    res.render("novedadesPersonal/novedadesPersonal",{novedadPersonal,novedadPersonalPendiente,User, Admin})
 };
 
 export const CargaNovedadPersonal = async(req,res)=>{
     
     const bomberos = await Bomberos.find().lean();
-    res.render("novedadesPersonal/novedadPersonalAdd",{bomberos, Situacion,User,errors});
+    res.render("novedadesPersonal/novedadPersonalAdd",{bomberos, Situacion,User,errors, Admin});
 };
 
 export const guardadNovedad = async (req,res)=>{
@@ -70,7 +70,7 @@ export const mostrarNovedad = async (req,res)=>{
 
 
     // se la envio al la vista para mostrarla.
-    res.render("novedadesPersonal/novedadMostrar",{novedadPorFinalizar, User});
+    res.render("novedadesPersonal/novedadMostrar",{novedadPorFinalizar, User, Admin});
 
 };
 

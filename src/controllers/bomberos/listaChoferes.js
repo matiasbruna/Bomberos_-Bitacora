@@ -1,5 +1,5 @@
 import Bomberos from "../../models/Bomberos";
-import { User } from "../../models/auth";
+import { User, Admin   } from "../../models/auth";
 
 // Muestra solo los bomberos que son choferes
 export async function mostrarChoferes(req, res) {
@@ -7,5 +7,5 @@ export async function mostrarChoferes(req, res) {
     .sort({ nOrden: 1 })
     .lean();
 
-  res.render("bomberos/choferes", { todosBomberos, User });
+  res.render("bomberos/choferes", { todosBomberos, User, Admin });
 }
