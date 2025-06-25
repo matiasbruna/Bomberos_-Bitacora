@@ -6,6 +6,7 @@ import unidadesRoutes from "./routes/unidades.routes";
 import novedadesRoutes from "./routes/novedades.routes";
 import movimientoUnidades from "./routes/movimientosUnidades.routes";
 import novedadesPersonal from "./routes/novedadesPersonal.routes";
+import guardiasRoutes from "./routes/guardias.routes";
 import loginRoutes from "./routes/login.routes";
 import flash from "connect-flash";
 import path from "path";
@@ -50,6 +51,7 @@ app.use(novedadesRoutes);
 app.use(movimientoUnidades);
 app.use(loginRoutes);
 app.use(novedadesPersonal);
+app.use(guardiasRoutes);
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));
