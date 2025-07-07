@@ -13,7 +13,7 @@ const periodoDeGuardiaSchema = new Schema(
     guardias: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Guardias",
+        ref: "Guardia",
       }
     ]
   },
