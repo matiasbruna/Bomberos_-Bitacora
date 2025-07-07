@@ -30,7 +30,11 @@ const hbs = engine({
     isChecked: function (list, value) {
       if (!Array.isArray(list)) return '';
       return list.includes(Number(value)) ? 'checked' : '';
+    },
+      addOne: function (value) {
+      return value + 1;
     }
+    
   }
 });
 

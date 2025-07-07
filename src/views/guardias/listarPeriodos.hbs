@@ -1,0 +1,68 @@
+<div class="container">
+  <h1>Listado de Períodos de Guardia</h1>
+  <br />
+
+  <div>
+    <a href="/guardias/crearPeriodo" class="btn btn-primary">Crear Nuevo Período</a>
+  </div>
+
+  <br />
+
+  {{#if errors.length}}
+    <div class="alert alert-danger">
+      <ul>
+        {{#each errors}}
+          <li>{{this.text}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+  {{#if periodos.length}}
+    <div class="table-responsive">
+      <table class="table table-hover table-sm table-light">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Cantidad de Guardias</th>
+            <th>Detalle de Guardias</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each periodos}}
+            <tr>
+              <td>{{addOne @index}}</td>
+              <td>{{this.fechaInicio}}</td>
+              <td>{{this.fechaFin}}</td>
+              <td>{{this.guardias.length}}</td>
+              <td>
+                {{#if this.guardias.length}}
+                  <ul class="mb-0">
+                    {{#each this.guardias}}
+                      <li>
+                        N° {{numero}} / 
+                        Oficial: {{oficialDeSemana.apellido}}, {{oficialDeSemana.nombre}} / 
+                        Superior: {{superiorDeTurno.apellido}}, {{superiorDeTurno.nombre}}
+                      </li>
+                    {{/each}}
+                  </ul>
+                {{else}}
+                  <span class="text-muted">Sin guardias asignadas</span>
+                {{/if}}
+              </td>
+              <td>
+                <a href="/periodos/editar/{{this._id}}" class="btn btn-info btn-sm">Editar Período</a>
+                <a href="/guardias/nueva" class="btn btn-info btn-sm">Crear Guardia</a>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <p>No hay períodos de guardia creados aún.</p>
+  {{/if}}
+</div>

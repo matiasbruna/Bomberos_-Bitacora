@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Crear Nuevo Período de Guardia</h1>
+  <br />
+
+  {{#if errors.length}}
+    <div class="alert alert-danger">
+      <ul>
+        {{#each errors}}
+          <li>{{this.text}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  {{/if}}
+
+  <form action="/guardias/crearPeriodo" method="POST">
+    <div class="mb-3">
+      <label for="fechaInicio" class="form-label">Fecha de Inicio:</label>
+      <input type="datetime-local" name="fechaInicio" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="fechaFin" class="form-label">Fecha de Fin:</label>
+      <input type="datetime-local" name="fechaFin" class="form-control" required>
+    </div>
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-success">Guardar Período</button>
+      <a href="/guardias/periodos" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>

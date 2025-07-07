@@ -2,6 +2,8 @@ import { errors, reiniciarErrors } from "../../models/Errors";
 import { User, Admin } from "../../models/auth";
 import Grados from "../../models/Grados";
 import Bomberos from "../../models/Bomberos";
+import Guardia from "../../models/Guardias/Guardias.js";
+import PeriodoDeGuardia from "../../models/Guardias/PeriodoDeGuardia.js";
 
 export async function vistaNuevaGuardia(req, res) {
   reiniciarErrors();
@@ -69,5 +71,59 @@ export async function vistaNuevaGuardia(req, res) {
       User,
       errors,
     });
+  }
+};
+export async function crearGuardia(req, res) {
+  reiniciarErrors();
+
+  try {
+    const {
+      numero,
+      fechaInicio,
+      fechaFin,
+      oficialDeSemana,
+      superiorDeTurno,
+      bomberosAsignados,
+      guardiasEspeciales,
+    } = req.body;
+
+    if (!fechaInicio || !fechaFin || !oficialDeSemana || !superiorDeTurno) {
+      errors.push({ text: "Todos los campos obligatorios deben estar completos" });
+      return res.render("guardias/crearGuardia", { errors });
+    }
+
+    // Buscar período que contenga este rango de fechas
+    const periodo = await PeriodoDeGuardia.findOne({
+      fechaInicio: { $lte: new Date(fechaInicio) },
+      fechaFin: { $gte: new Date(fechaFin) }
+    });
+
+    if (!periodo) {
+      errors.push({ text: "No existe un período que contenga estas fechas" });
+      return res.render("guardias/crearGuardia", { errors });
+    }
+
+    // Crear y guardar la guardia
+    const nuevaGuardia = new Guardia({
+      numero,
+      fechaInicio,
+      fechaFin,
+      oficialDeSemana,
+      superiorDeTurno,
+      bomberosAsignados,
+      guardiasEspeciales,
+    });
+
+    await nuevaGuardia.save();
+
+    // Asociar la guardia al período
+    periodo.guardias.push(nuevaGuardia._id);
+    await periodo.save();
+
+    return res.redirect("/guardias/periodos");
+  } catch (error) {
+    console.error(error);
+    errors.push({ text: "Error al crear la guardia" });
+    return res.render("guardias/crearGuardia", { errors });
   }
 }
