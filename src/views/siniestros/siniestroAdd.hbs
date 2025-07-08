@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h1>Nuevo Siniestro</h1>
+  <br />
+
+  <form action="/siniestros/nuevo" method="POST">
+
+    <div class="row mb-3">
+      <div class="col-md-3">
+        <label for="numeroParte" class="form-label">Número de Parte:</label>
+        <input
+          type="text"
+          name="numeroParte"
+          class="form-control"
+          required
+          placeholder="Numero">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="tipoDeSiniestro" class="form-label">Tipo de Siniestro:</label>
+      <input type="text" name="tipoDeSiniestro" class="form-control" required>
+    </div>
+
+    {{#if errors.length}}
+      <div class="alert alert-danger">
+        <ul>
+          {{#each errors}}
+            <li>{{this.text}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-success">Guardar y Continuar</button>
+      <a href="/siniestros" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>

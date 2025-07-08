@@ -1,0 +1,59 @@
+<div class="container-fluid mt-4">
+  <h1>Listado de Siniestros</h1>
+  <br />
+  <div>
+    <a href="/siniestros/nuevo" class="btn btn-primary">Nuevo Siniestro</a>
+  </div>
+  <br />
+  {{#if siniestros.length}}
+    <div class="table-responsive">
+      <table class="table table-hover table-sm table-light">
+        <thead>
+          <tr>
+            <th>Número de Parte</th>
+            <th>Tipo</th>
+            <th>Dirección</th>
+            <th>Unidades</th>
+            <th>Jefes de Dotación</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each siniestros}}
+            <tr>
+              <td>{{this.numeroParte}}</td>
+              <td>{{this.tipoDeSiniestro}}</td>
+              <td>{{this.direccion}}</td>
+              <td>
+                {{#each this.dotaciones}}
+                  {{this.unidad.numero}}{{#unless @last}}, {{/unless}}
+                {{/each}}
+              </td>
+              <td>
+                {{#each this.dotaciones}}
+                  {{#if @last}}
+                    {{this.jefeDotacion.apellido}}, {{this.jefeDotacion.nombre}}
+                  {{else}}
+                    {{this.jefeDotacion.apellido}}, {{this.jefeDotacion.nombre}}; 
+                  {{/if}}
+                {{/each}}
+              </td>
+              <td>{{#if this.finalizado}}Finalizado{{else}}Abierto{{/if}}</td>
+              <td>
+                <a href="/siniestros/{{this._id}}/editar" class="btn btn-sm btn-info">Editar</a>
+                {{#unless this.finalizado}}
+                  <form action="/siniestros/{{this._id}}/cerrar" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger">Cerrar</button>
+                  </form>
+                {{/unless}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    <h3>No hay siniestros cargados.</h3>
+  {{/if}}
+</div>
