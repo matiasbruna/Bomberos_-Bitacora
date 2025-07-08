@@ -1,0 +1,138 @@
+<div class="container mt-4">
+  <h1>Agregar Dotación al Siniestro Nº {{siniestro.numeroParte}}</h1>
+  <hr />
+
+  <form action="/siniestros/{{siniestro._id}}/dotacion" method="POST">
+    
+    <!-- Unidad -->
+    <div class="mb-3">
+      <label for="unidadSelect" class="form-label">Unidad:</label>
+      <select id="unidadSelect" name="unidad" class="form-select" required>
+        <option value="">Seleccione unidad</option>
+        {{#each unidades}}
+          <option value="{{this.numero}}">{{this.numero}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <!-- Chofer -->
+    <div class="mb-3">
+      <label for="choferSelect" class="form-label">Chofer:</label>
+      <select id="choferSelect" name="chofer" class="form-select" required>
+        <option value="">Seleccione chofer</option>
+      </select>
+    </div>
+
+    <!-- Jefe de Dotación -->
+    <div class="mb-3">
+      <label for="jefeDotacion" class="form-label">Jefe de Dotación:</label>
+      <select name="jefeDotacion" class="form-select" required>
+        <option value="">Seleccione jefe</option>
+        {{#each bomberosActivos}}
+          <option value="{{this._id}}">{{this.apellido}}, {{this.nombre}} ({{this.rango}})</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <!-- Integrantes (agregar uno por uno) -->
+    <div class="mb-3">
+      <label for="bomberoSelect" class="form-label">Agregar Bombero:</label>
+      <div class="input-group">
+        <select id="bomberoSelect" class="form-select">
+          <option value="">Seleccione un bombero</option>
+          {{#each bomberosActivos}}
+            <option value="{{this._id}}">{{this.apellido}}, {{this.nombre}} ({{this.rango}})</option>
+          {{/each}}
+        </select>
+        <button type="button" id="agregarBomberoBtn" class="btn btn-outline-primary">Agregar</button>
+      </div>
+    </div>
+
+    <!-- Lista de bomberos agregados -->
+    <div class="mb-3">
+      <label class="form-label">Dotación seleccionada:</label>
+      <ul id="listaDotacion" class="list-group"></ul>
+      <!-- Campo oculto con todos los IDs -->
+      <input type="hidden" name="bomberos" id="bomberosInput">
+    </div>
+
+    <!-- Errores -->
+    {{#if errors.length}}
+      <div class="alert alert-danger">
+        <ul>
+          {{#each errors}}
+            <li>{{this.text}}</li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
+    <!-- Botones -->
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-success me-2">Guardar Dotación</button>
+      <a href="/siniestros" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Carga de choferes dinámicos
+  document.getElementById("unidadSelect").addEventListener("change", async function () {
+    const unidad = this.value;
+    if (!unidad) return;
+
+    const res = await fetch(`/siniestros/choferesPorUnidad?unidad=${unidad}`);
+    const choferes = await res.json();
+
+    const choferSelect = document.getElementById("choferSelect");
+    choferSelect.innerHTML = '<option value="">Seleccione chofer</option>';
+
+    choferes.forEach(c => {
+      const option = document.createElement("option");
+      option.value = c._id;
+      option.textContent = `${c.apellido}, ${c.nombre} (${c.rango})`;
+      choferSelect.appendChild(option);
+    });
+  });
+
+  // Agregar bomberos uno por uno
+  const bomberoSelect = document.getElementById("bomberoSelect");
+  const agregarBtn = document.getElementById("agregarBomberoBtn");
+  const listaDotacion = document.getElementById("listaDotacion");
+  const bomberosInput = document.getElementById("bomberosInput");
+
+  const dotacionSeleccionada = [];
+
+  agregarBtn.addEventListener("click", () => {
+    const id = bomberoSelect.value;
+    const nombre = bomberoSelect.options[bomberoSelect.selectedIndex].text;
+
+    if (!id || dotacionSeleccionada.includes(id)) return;
+
+    dotacionSeleccionada.push(id);
+
+    const li = document.createElement("li");
+    li.className = "list-group-item d-flex justify-content-between align-items-center";
+    li.textContent = nombre;
+
+    const eliminarBtn = document.createElement("button");
+    eliminarBtn.className = "btn btn-sm btn-danger";
+    eliminarBtn.type = "button";
+    eliminarBtn.textContent = "Quitar";
+    eliminarBtn.onclick = () => {
+      const index = dotacionSeleccionada.indexOf(id);
+      if (index > -1) {
+        dotacionSeleccionada.splice(index, 1);
+        bomberosInput.value = dotacionSeleccionada.join(",");
+        listaDotacion.removeChild(li);
+      }
+    };
+
+    li.appendChild(eliminarBtn);
+    listaDotacion.appendChild(li);
+
+    // Actualiza input oculto
+    bomberosInput.value = dotacionSeleccionada.join(",");
+  });
+</script>
+
