@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"},{"v":{"$numberInt":"2"},"key":{"dni":{"$numberInt":"1"}},"name":"dni_1","background":true,"unique":true}],"uuid":"762a47e6501f4d51aada8d1e314e782f","collectionName":"bomberos","type":"collection"}
